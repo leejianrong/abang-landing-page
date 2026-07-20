@@ -1,0 +1,222 @@
+<style>
+  /* ============================================================
+     Abang / Satay — Hero (committed direction)
+     Light-first, warm "kueh" palette, solid colours (no gradients).
+     Theme-aware: light is the design-first look; warm dark supported.
+     ============================================================ */
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  :root {
+    color-scheme: light dark;
+    --mono: ui-monospace, "SF Mono", "JetBrains Mono", "Menlo", "Cascadia Code", monospace;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+    /* light (default / design-first) */
+    --bg:#f7f2ea; --ink:#221913; --muted:#736354; --card:#fffdf9; --line:rgba(60,35,15,.12);
+    --ember:#de5f1c; --chili:#c62d1c; --pandan:#2f9c5e; --palm:#8a4a1f;
+    --stick:rgba(60,35,15,.18);
+    --bead:#8a4a1f; --bead-ring:var(--card);
+    --crash:#c62d1c; --crash-ring:rgba(198,45,28,.16);
+    --resume:#2f9c5e; --resume-ring:rgba(47,156,94,.18);
+    --c-kw:#c62d1c; --c-dec:#de5f1c; --c-fn:#2f261d; --c-st:#2f9c5e; --c-cm:#a99a88; --c-pn:#8a4a1f;
+    --shadow: 0 30px 60px -38px rgba(120,50,10,.5);
+  }
+  @media (prefers-color-scheme: dark){ :root{
+    --bg:#17110c; --ink:#f5ece0; --muted:#b09781; --card:#211913; --line:rgba(255,220,180,.11);
+    --ember:#f5843a; --chili:#f0512f; --pandan:#41c07d; --palm:#c9884f;
+    --stick:rgba(255,220,180,.16);
+    --bead:#c9884f; --bead-ring:var(--bg);
+    --crash:#f0512f; --crash-ring:rgba(240,81,47,.20);
+    --resume:#41c07d; --resume-ring:rgba(65,192,125,.20);
+    --c-kw:#f0673f; --c-dec:#f5a54a; --c-fn:#f0e6d8; --c-st:#5ec98c; --c-cm:#8a7561; --c-pn:#e0a266;
+    --shadow: 0 30px 66px -36px rgba(0,0,0,.7);
+  }}
+  :root[data-theme="dark"]{
+    --bg:#17110c; --ink:#f5ece0; --muted:#b09781; --card:#211913; --line:rgba(255,220,180,.11);
+    --ember:#f5843a; --chili:#f0512f; --pandan:#41c07d; --palm:#c9884f;
+    --stick:rgba(255,220,180,.16);
+    --bead:#c9884f; --bead-ring:var(--bg);
+    --crash:#f0512f; --crash-ring:rgba(240,81,47,.20);
+    --resume:#41c07d; --resume-ring:rgba(65,192,125,.20);
+    --c-kw:#f0673f; --c-dec:#f5a54a; --c-fn:#f0e6d8; --c-st:#5ec98c; --c-cm:#8a7561; --c-pn:#e0a266;
+    --shadow: 0 30px 66px -36px rgba(0,0,0,.7);
+  }
+  :root[data-theme="light"]{
+    --bg:#f7f2ea; --ink:#221913; --muted:#736354; --card:#fffdf9; --line:rgba(60,35,15,.12);
+    --ember:#de5f1c; --chili:#c62d1c; --pandan:#2f9c5e; --palm:#8a4a1f;
+    --stick:rgba(60,35,15,.18);
+    --bead:#8a4a1f; --bead-ring:var(--card);
+    --crash:#c62d1c; --crash-ring:rgba(198,45,28,.16);
+    --resume:#2f9c5e; --resume-ring:rgba(47,156,94,.18);
+    --c-kw:#c62d1c; --c-dec:#de5f1c; --c-fn:#2f261d; --c-st:#2f9c5e; --c-cm:#a99a88; --c-pn:#8a4a1f;
+    --shadow: 0 30px 60px -38px rgba(120,50,10,.5);
+  }
+
+  body { margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); -webkit-font-smoothing:antialiased; }
+  a { color: inherit; }
+
+  .themebtn {
+    position: fixed; top: 14px; right: 16px; z-index: 60;
+    font-family: var(--mono); font-size: 11.5px; cursor:pointer; color:var(--muted);
+    background: color-mix(in srgb, var(--bg) 80%, transparent); border:1px solid var(--line);
+    border-radius:999px; padding:6px 12px; backdrop-filter: blur(8px);
+  }
+  .themebtn:hover { color: var(--ink); border-color: color-mix(in srgb, var(--ink) 34%, transparent); }
+
+  nav.top { display:flex; align-items:center; gap:30px; max-width:1180px; margin:0 auto; padding:26px 40px 8px; }
+  .brand { display:flex; align-items:center; gap:11px; font-weight:680; letter-spacing:-.02em; font-size:18px; }
+  .brand small { font-weight:450; opacity:.55; letter-spacing:0; font-size:13px; }
+  .brandmark { color:var(--ember); flex:none; }
+  .navlinks { display:flex; gap:26px; margin-left:auto; align-items:center; }
+  .navlinks a { text-decoration:none; font-size:14px; opacity:.72; }
+  .navlinks a:hover { opacity:1; }
+  .navlinks a.gh { background:var(--ink); color:var(--bg); border-radius:9px; padding:7px 13px; opacity:1; font-weight:600; }
+  .navlinks a.gh:hover { background: var(--ember); }
+
+  .wrap { max-width:1180px; margin:0 auto; padding:30px 40px 88px; }
+  .grid { display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:center; margin-top:44px; }
+
+  .kicker { display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:11.5px; letter-spacing:.04em;
+    color:var(--muted); padding:5px 11px; border-radius:999px; border:1px solid var(--line); margin-bottom:24px; }
+  .kicker .live { width:7px; height:7px; border-radius:50%; background:var(--pandan); flex:none; }
+
+  h1.head { margin:0; font-size:clamp(40px,6vw,74px); font-weight:800; line-height:1.0; letter-spacing:-.038em; }
+  h1.head .em { color:var(--ember); }
+  .sub { margin:24px 0 0; font-size:18px; line-height:1.55; max-width:44ch; color:var(--muted); }
+  .sub b { color:var(--ink); font-weight:640; }
+
+  .cta { display:flex; align-items:center; gap:14px; margin-top:34px; flex-wrap:wrap; }
+  .btn { font:inherit; text-decoration:none; cursor:pointer; border:0; display:inline-flex; align-items:center; gap:9px; }
+  .btn-primary { background:var(--ember); color:#fff; padding:14px 22px; border-radius:12px; font-size:15px; font-weight:680; letter-spacing:-.01em;
+    box-shadow: 0 12px 26px -14px color-mix(in srgb,var(--ember) 80%, transparent); }
+  .btn-primary:hover { background: color-mix(in srgb, var(--ember) 88%, #000); }
+  .btn-primary.mono { font-family:var(--mono); font-weight:600; }
+  .btn-ghost { color:var(--ink); padding:14px 14px; font-size:15px; font-weight:600; border:1.5px solid var(--line); border-radius:12px; }
+  .btn-ghost:hover { border-color:var(--ember); color:var(--ember); }
+
+  .metrics { display:flex; gap:30px; margin-top:48px; flex-wrap:wrap; }
+  .metric b { display:block; font-size:16px; letter-spacing:-.01em; color:var(--ink); }
+  .metric b em { font-style:normal; color:var(--ember); }
+  .metric span { font-size:12.5px; opacity:.6; }
+  .metric span code { font-family:var(--mono); }
+
+  /* code panel */
+  .panel { border-radius:15px; overflow:hidden; background:var(--card); border:1.5px solid var(--line); box-shadow:var(--shadow); }
+  .panel .bar { display:flex; align-items:center; gap:7px; padding:12px 15px; font-family:var(--mono); font-size:11.5px; color:var(--muted); border-bottom:1.5px solid var(--line); }
+  .panel .bar i { width:9px; height:9px; border-radius:50%; display:inline-block; }
+  .panel .bar i:nth-child(1){ background:var(--chili);} .panel .bar i:nth-child(2){ background:var(--ember);} .panel .bar i:nth-child(3){ background:var(--pandan);}
+  .panel .bar .fn { margin-left:8px; opacity:.7; }
+  pre.code { margin:0; padding:17px 18px 21px; font-family:var(--mono); font-size:12.8px; line-height:1.62; overflow-x:auto; color:var(--c-fn); }
+  pre.code .kw{color:var(--c-kw);} pre.code .dec{color:var(--c-dec);} pre.code .fn{color:var(--c-fn); font-weight:600;}
+  pre.code .st{color:var(--c-st);} pre.code .cm{color:var(--c-cm); font-style:italic;} pre.code .pn{color:var(--c-pn);}
+
+  /* skewer timeline signature */
+  .skewer { margin-top:16px; padding:17px 20px 15px; border-radius:15px; background:var(--card); border:1.5px solid var(--line); }
+  .skewer .lbl { font-family:var(--mono); font-size:11px; letter-spacing:.03em; color:var(--muted); margin-bottom:16px; }
+  .stick { position:relative; display:flex; align-items:center; justify-content:space-between; padding:0 4px; }
+  .stick::before { content:""; position:absolute; left:8px; right:8px; top:50%; height:2px; transform:translateY(-50%); background:var(--stick); border-radius:2px; }
+  .bead { position:relative; width:15px; height:15px; border-radius:50%; background:var(--bead); box-shadow:0 0 0 4px var(--bead-ring); }
+  .bead.crash { background:var(--crash); box-shadow:0 0 0 4px var(--crash-ring); }
+  .bead.resume{ background:var(--resume); box-shadow:0 0 0 4px var(--resume-ring); }
+  .beadrow { display:flex; align-items:center; justify-content:space-between; margin-top:12px; }
+  .beadrow span { font-family:var(--mono); font-size:10px; color:var(--muted); flex:1; text-align:center; }
+  .beadrow span:first-child{ text-align:left;} .beadrow span:last-child{ text-align:right;}
+  .beadrow .x { color:var(--chili); } .beadrow .r { color:var(--pandan); }
+
+  @media (max-width:880px){
+    .grid { grid-template-columns:1fr; gap:36px; }
+    .navlinks a:not(.gh){ display:none; }
+    .wrap { padding:24px 22px 60px; } nav.top{ padding:22px 22px 8px; }
+  }
+  @media (prefers-reduced-motion: no-preference){
+    .fade { opacity:0; transform:translateY(10px); animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards; }
+    .fade.d1{animation-delay:.04s}.fade.d2{animation-delay:.12s}.fade.d3{animation-delay:.2s}.fade.d4{animation-delay:.3s}
+    @keyframes rise { to { opacity:1; transform:none; } }
+  }
+</style>
+
+<button class="themebtn" id="tt">◐ light / dark</button>
+
+<nav class="top">
+  <div class="brand">
+    <svg class="brandmark" width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <line x1="3" y1="18" x2="21" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="7.5" cy="14.5" r="2.3" fill="currentColor"/>
+      <circle cx="12" cy="10.8" r="2.3" fill="currentColor"/>
+      <circle cx="16.5" cy="7.1" r="2.3" fill="currentColor"/>
+    </svg>
+    Abang <small>/ Satay</small>
+  </div>
+  <div class="navlinks">
+    <a href="#">Satay</a><a href="#">Roadmap</a><a href="#">Docs</a>
+    <a href="#" class="gh">GitHub ↗</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="grid">
+    <div>
+      <span class="kicker fade d1"><span class="live"></span> Durable Python runtime</span>
+      <h1 class="head fade d1">Durable Python that <span class="em">shows its work</span>.</h1>
+      <p class="sub fade d2">Write ordinary async Python. Satay records every step to an append-only journal, <b>survives crashes</b>, and <b>replays exactly what happened</b> — then shows you the whole run locally in Satay Studio. No graph DSL, no hosted service.</p>
+      <div class="cta fade d3">
+        <a href="#" class="btn btn-primary mono">pip install satay</a>
+        <a href="#" class="btn btn-ghost">Read the docs →</a>
+      </div>
+      <div class="metrics fade d4">
+        <div class="metric"><b><em>0</em> work redone</b><span>replay reuses journaled results</span></div>
+        <div class="metric"><b><em>1</em> command</b><span><code>satay dev</code> · runs it all, locally</span></div>
+        <div class="metric"><b><em>0</em> graph DSL</b><span>plain if / for / try</span></div>
+      </div>
+    </div>
+
+    <div class="fade d3">
+      <div class="panel">
+        <div class="bar"><i></i><i></i><i></i><span class="fn">enrich.py</span></div>
+<pre class="code"><span class="kw">import</span> satay
+
+<span class="dec">@satay.task</span>(retries=<span class="pn">3</span>)
+<span class="kw">async def</span> <span class="fn">fetch</span>(url: str) -> dict:
+    <span class="cm"># your I/O, your SDK calls</span>
+    ...
+
+<span class="dec">@satay.workflow</span>
+<span class="kw">async def</span> <span class="fn">enrich</span>(urls: list[str]) -> Report:
+    pages = <span class="kw">await</span> satay.map(fetch, urls, concurrency=<span class="pn">8</span>)
+    draft = <span class="kw">await</span> summarize(pages)
+    ok    = <span class="kw">await</span> satay.wait_for_event(Approval, key=<span class="st">"review"</span>)
+    <span class="kw">return</span> <span class="kw">await</span> publish(draft) <span class="kw">if</span> ok <span class="kw">else</span> draft</pre>
+      </div>
+      <div class="skewer">
+        <div class="lbl">RUN TIMELINE · killed after summarize, resumed on restart</div>
+        <div class="stick">
+          <span class="bead" title="fetch"></span>
+          <span class="bead" title="fetch"></span>
+          <span class="bead" title="summarize"></span>
+          <span class="bead crash" title="crash"></span>
+          <span class="bead resume" title="replay"></span>
+          <span class="bead" title="wait_for_event"></span>
+          <span class="bead" title="publish"></span>
+        </div>
+        <div class="beadrow">
+          <span>fetch×8</span><span>summarize</span><span class="x">✕ crash</span><span class="r">↻ resume</span><span>await approval</span><span>publish</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function(){
+    var btn = document.getElementById('tt');
+    function cur(){
+      var a = document.documentElement.getAttribute('data-theme');
+      if (a) return a;
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    btn.addEventListener('click', function(){
+      document.documentElement.setAttribute('data-theme', cur()==='dark' ? 'light' : 'dark');
+    });
+  })();
+</script>

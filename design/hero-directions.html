@@ -1,0 +1,420 @@
+<style>
+  /* ============================================================
+     Abang / Satay — Hero direction comparison
+     Two directions stacked. Theme-aware (light/dark).
+     A = "Ember, quietly" (minimal & premium)
+     B = "Over the coals" (bold & warm)
+     ============================================================ */
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  :root {
+    color-scheme: light dark;
+    --page-bg: #ece9e3;
+    --page-ink: #33302b;
+    --hair: rgba(0,0,0,.12);
+    --mono: ui-monospace, "SF Mono", "JetBrains Mono", "Menlo", "Cascadia Code", monospace;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --page-bg:#0b0b0d; --page-ink:#c9c5bd; --hair:rgba(255,255,255,.12); }
+  }
+  :root[data-theme="dark"]  { --page-bg:#0b0b0d; --page-ink:#c9c5bd; --hair:rgba(255,255,255,.12); }
+  :root[data-theme="light"] { --page-bg:#ece9e3; --page-ink:#33302b; --hair:rgba(0,0,0,.12); }
+
+  body { margin: 0; background: var(--page-bg); color: var(--page-ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+
+  /* ---- comparison scaffold (chrome, not part of the design) ---- */
+  .rail {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    padding: 10px 20px; background: color-mix(in srgb, var(--page-bg) 82%, transparent);
+    backdrop-filter: blur(10px); border-bottom: 1px solid var(--hair);
+    font-size: 13px;
+  }
+  .rail strong { font-weight: 650; letter-spacing:-.01em; }
+  .rail .sp { flex: 1; }
+  .rail .hint { opacity:.62; font-family: var(--mono); font-size: 11.5px; }
+  .themebtn {
+    font: inherit; font-size: 12px; cursor: pointer; color: inherit;
+    background: transparent; border: 1px solid var(--hair); border-radius: 999px;
+    padding: 5px 13px;
+  }
+  .themebtn:hover { border-color: color-mix(in srgb, var(--page-ink) 40%, transparent); }
+
+  .tag {
+    display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;
+    max-width: 1180px; margin: 0 auto; padding: 46px 40px 8px;
+  }
+  .tag .id { font-family: var(--mono); font-size: 12px; letter-spacing:.08em; opacity:.5; }
+  .tag h2 { margin:0; font-size: clamp(20px, 3vw, 30px); font-weight: 640; letter-spacing:-.025em; }
+  .tag p  { margin:0; opacity:.6; font-size: 13.5px; max-width: 46ch; }
+
+  /* ============================================================
+     SHARED hero structure
+     ============================================================ */
+  .hero { position: relative; overflow: hidden; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 30px 40px 74px; }
+
+  nav.top {
+    display:flex; align-items:center; gap: 30px;
+    max-width: 1180px; margin: 0 auto; padding: 26px 40px 8px;
+  }
+  .brand { display:flex; align-items:center; gap: 11px; font-weight: 660; letter-spacing:-.02em; font-size: 17px; }
+  .brand small { font-weight: 450; opacity:.55; letter-spacing:0; font-size: 13px; }
+  .navlinks { display:flex; gap: 24px; margin-left: auto; align-items:center; }
+  .navlinks a { text-decoration:none; color: inherit; font-size: 14px; opacity:.72; }
+  .navlinks a:hover { opacity: 1; }
+
+  .grid { display:grid; grid-template-columns: 1.05fr .95fr; gap: 54px; align-items:center; margin-top: 40px; }
+
+  h1.head { margin: 0; letter-spacing: -.035em; }
+  .sub { margin: 22px 0 0; font-size: 17px; line-height: 1.55; max-width: 40ch; }
+  .cta { display:flex; align-items:center; gap: 14px; margin-top: 34px; flex-wrap: wrap; }
+  .btn { font: inherit; text-decoration:none; cursor:pointer; border:0; display:inline-flex; align-items:center; gap:9px; }
+  .btn-mono { font-family: var(--mono); }
+  .metrics { display:flex; gap: 30px; margin-top: 46px; flex-wrap: wrap; }
+  .metric b { display:block; font-size: 15px; letter-spacing:-.01em; }
+  .metric span { font-size: 12.5px; opacity:.58; }
+
+  /* code panel */
+  .panel { border-radius: 14px; overflow:hidden; }
+  .panel .bar { display:flex; align-items:center; gap:7px; padding: 11px 15px; font-family: var(--mono); font-size: 11.5px; }
+  .panel .bar i { width:9px; height:9px; border-radius:50%; display:inline-block; opacity:.5;}
+  .panel .bar .fn { margin-left: 8px; opacity:.6; }
+  pre.code { margin:0; padding: 16px 18px 20px; font-family: var(--mono); font-size: 12.6px; line-height: 1.62; overflow-x:auto; }
+  pre.code .kw { color: var(--c-kw); }
+  pre.code .dec{ color: var(--c-dec); }
+  pre.code .fn { color: var(--c-fn); }
+  pre.code .st { color: var(--c-st); }
+  pre.code .cm { color: var(--c-cm); font-style: italic; }
+  pre.code .pn { opacity:.85; }
+
+  /* skewer timeline */
+  .skewer { margin-top: 16px; padding: 16px 18px; border-radius: 14px; }
+  .skewer .lbl { font-family: var(--mono); font-size: 11px; letter-spacing:.05em; opacity:.6; margin-bottom: 14px; }
+  .stick { position: relative; display:flex; align-items:center; justify-content: space-between; }
+  .stick::before { content:""; position:absolute; left:4px; right:4px; top:50%; height:2px; transform: translateY(-50%); background: var(--stick-col); border-radius: 2px; }
+  .bead { position: relative; width: 15px; height: 15px; border-radius: 50%; background: var(--bead); box-shadow: 0 0 0 4px var(--bead-ring); }
+  .bead.crash { background: var(--crash); box-shadow: 0 0 0 4px var(--crash-ring); }
+  .bead.resume{ background: var(--resume); box-shadow: 0 0 0 4px var(--resume-ring); }
+  .beadrow { display:flex; align-items:center; justify-content: space-between; margin-top: 11px; }
+  .beadrow span { font-family: var(--mono); font-size: 10px; opacity:.62; flex:1; text-align:center; }
+  .beadrow span:first-child{ text-align:left;} .beadrow span:last-child{ text-align:right;}
+  .cut { position:absolute; top:50%; transform: translate(-50%,-50%); font-family: var(--mono); font-size:10px; }
+
+  /* ============================================================
+     DIRECTION A — "Ember, quietly" (minimal & premium)
+     cool near-black / warm paper · one ember accent · precise
+     ============================================================ */
+  .dirA {
+    --bg:#f6f4ef; --ink:#1b1a18; --muted:#6f6b63; --card:#ffffff; --line:rgba(20,18,15,.09);
+    --ember:#c9642b; --stick-col:rgba(20,18,15,.16);
+    --bead:#3a382f; --bead-ring: color-mix(in srgb, var(--card) 100%, transparent);
+    --crash:#c9642b; --crash-ring: rgba(201,100,43,.16);
+    --resume:#3a382f; --resume-ring: color-mix(in srgb,var(--card) 100%, transparent);
+    --c-kw:#a24a1e; --c-dec:#b06a2f; --c-fn:#2b2a26; --c-st:#6a7d55; --c-cm:#a9a396;
+    background: var(--bg); color: var(--ink);
+  }
+  @media (prefers-color-scheme: dark){ .dirA{
+    --bg:#0e0f11; --ink:#ece9e3; --muted:#8f8b82; --card:#16171a; --line:rgba(255,255,255,.08);
+    --stick-col:rgba(255,255,255,.14);
+    --bead:#d7d3ca; --bead-ring:#0e0f11; --resume:#d7d3ca; --resume-ring:#0e0f11;
+    --crash:#e8843c; --crash-ring:rgba(232,132,60,.18); --ember:#e8843c;
+    --c-kw:#e8945a; --c-dec:#c9a074; --c-fn:#d7d3ca; --c-st:#9bb07a; --c-cm:#6b675e;
+  }}
+  :root[data-theme="dark"] .dirA{
+    --bg:#0e0f11; --ink:#ece9e3; --muted:#8f8b82; --card:#16171a; --line:rgba(255,255,255,.08);
+    --stick-col:rgba(255,255,255,.14);
+    --bead:#d7d3ca; --bead-ring:#0e0f11; --resume:#d7d3ca; --resume-ring:#0e0f11;
+    --crash:#e8843c; --crash-ring:rgba(232,132,60,.18); --ember:#e8843c;
+    --c-kw:#e8945a; --c-dec:#c9a074; --c-fn:#d7d3ca; --c-st:#9bb07a; --c-cm:#6b675e;
+  }
+  :root[data-theme="light"] .dirA{
+    --bg:#f6f4ef; --ink:#1b1a18; --muted:#6f6b63; --card:#ffffff; --line:rgba(20,18,15,.09);
+    --stick-col:rgba(20,18,15,.16);
+    --bead:#3a382f; --bead-ring:#ffffff; --resume:#3a382f; --resume-ring:#ffffff;
+    --crash:#c9642b; --crash-ring:rgba(201,100,43,.16); --ember:#c9642b;
+    --c-kw:#a24a1e; --c-dec:#b06a2f; --c-fn:#2b2a26; --c-st:#6a7d55; --c-cm:#a9a396;
+  }
+
+  .dirA .navlinks a.gh { opacity:.9; border:1px solid var(--line); border-radius:8px; padding:6px 12px; }
+  .dirA h1.head { font-size: clamp(38px, 5.4vw, 62px); font-weight: 600; line-height: 1.02; }
+  .dirA h1.head .em { color: var(--ember); }
+  .dirA .sub { color: var(--muted); }
+  .dirA .btn-primary { background: var(--ink); color: var(--bg); padding: 12px 20px; border-radius: 10px; font-size: 14px; font-weight: 550; }
+  .dirA .btn-primary:hover { opacity:.9; }
+  .dirA .btn-ghost { color: var(--ink); padding: 12px 8px; font-size: 14px; opacity:.8; }
+  .dirA .btn-ghost:hover{ opacity:1; }
+  .dirA .metric b { color: var(--ink); }
+  .dirA .panel { background: var(--card); border:1px solid var(--line); box-shadow: 0 24px 60px -34px rgba(0,0,0,.4); }
+  .dirA .panel .bar { border-bottom:1px solid var(--line); color: var(--muted); }
+  .dirA .panel .bar i { background: var(--muted); }
+  .dirA .skewer { background: var(--card); border:1px solid var(--line); }
+  .dirA .brandmark { color: var(--ember); }
+  .dirA .dot-accent { color: var(--ember); }
+
+  /* ============================================================
+     DIRECTION B — "Over the coals" (bold & warm)
+     warm charcoal · ember→chili gradient · pandan-green resume
+     ============================================================ */
+  .dirB {
+    --bg:#fbf3e9; --ink:#241a12; --muted:#7a6553; --card:#fffaf3; --line:rgba(60,35,15,.12);
+    --ember:#e2661f; --chili:#cc2f1e; --pandan:#2f9c5e; --palm:#8a4a1f;
+    --stick-col: rgba(60,35,15,.18);
+    --bead:#8a4a1f; --bead-ring:#fbf3e9;
+    --crash:#cc2f1e; --crash-ring: rgba(204,47,30,.18);
+    --resume:#2f9c5e; --resume-ring: rgba(47,156,94,.20);
+    --c-kw:#cc2f1e; --c-dec:#e2661f; --c-fn:#3a2a1c; --c-st:#2f9c5e; --c-cm:#b09a86;
+    background: var(--bg); color: var(--ink);
+  }
+  @media (prefers-color-scheme: dark){ .dirB{
+    --bg:#17110c; --ink:#f6ede1; --muted:#b39a82; --card:#211913; --line:rgba(255,220,180,.11);
+    --stick-col: rgba(255,220,180,.16);
+    --bead:#c9884f; --bead-ring:#17110c;
+    --crash:#f0512f; --crash-ring:rgba(240,81,47,.22);
+    --resume:#41c07d; --resume-ring:rgba(65,192,125,.22);
+    --ember:#f5843a; --chili:#f0512f; --pandan:#41c07d;
+    --c-kw:#f0673f; --c-dec:#f5a54a; --c-fn:#f0e6d8; --c-st:#5ec98c; --c-cm:#8a7561;
+  }}
+  :root[data-theme="dark"] .dirB{
+    --bg:#17110c; --ink:#f6ede1; --muted:#b39a82; --card:#211913; --line:rgba(255,220,180,.11);
+    --stick-col: rgba(255,220,180,.16);
+    --bead:#c9884f; --bead-ring:#17110c;
+    --crash:#f0512f; --crash-ring:rgba(240,81,47,.22);
+    --resume:#41c07d; --resume-ring:rgba(65,192,125,.22);
+    --ember:#f5843a; --chili:#f0512f; --pandan:#41c07d;
+    --c-kw:#f0673f; --c-dec:#f5a54a; --c-fn:#f0e6d8; --c-st:#5ec98c; --c-cm:#8a7561;
+  }
+  :root[data-theme="light"] .dirB{
+    --bg:#fbf3e9; --ink:#241a12; --muted:#7a6553; --card:#fffaf3; --line:rgba(60,35,15,.12);
+    --stick-col: rgba(60,35,15,.18);
+    --bead:#8a4a1f; --bead-ring:#fbf3e9;
+    --crash:#cc2f1e; --crash-ring:rgba(204,47,30,.18);
+    --resume:#2f9c5e; --resume-ring:rgba(47,156,94,.20);
+    --ember:#e2661f; --chili:#cc2f1e; --pandan:#2f9c5e;
+    --c-kw:#cc2f1e; --c-dec:#e2661f; --c-fn:#3a2a1c; --c-st:#2f9c5e; --c-cm:#b09a86;
+  }
+
+  .dirB { position: relative; }
+  .dirB .glow { position:absolute; inset:0; pointer-events:none;
+    background:
+      radial-gradient(60% 50% at 82% 8%, color-mix(in srgb, var(--ember) 26%, transparent), transparent 70%),
+      radial-gradient(46% 40% at 12% 96%, color-mix(in srgb, var(--pandan) 15%, transparent), transparent 72%);
+  }
+  .dirB .wrap, .dirB nav.top { position: relative; z-index: 1; }
+  .dirB h1.head { font-size: clamp(40px, 6.2vw, 76px); font-weight: 800; line-height: .98; }
+  .dirB h1.head .fire {
+    background: linear-gradient(96deg, var(--ember), var(--chili));
+    -webkit-background-clip:text; background-clip:text; color: transparent;
+  }
+  .dirB .sub { color: var(--muted); font-size: 18px; }
+  .dirB .btn-primary {
+    background: linear-gradient(96deg, var(--ember), var(--chili)); color: #fff;
+    padding: 14px 24px; border-radius: 12px; font-size: 15px; font-weight: 700; letter-spacing:-.01em;
+    box-shadow: 0 14px 34px -12px color-mix(in srgb, var(--chili) 70%, transparent);
+  }
+  .dirB .btn-primary:hover { filter: brightness(1.05); }
+  .dirB .btn-ghost { color: var(--ink); padding: 14px 12px; font-size: 15px; font-weight: 600; border:1.5px solid var(--line); border-radius:12px; }
+  .dirB .btn-ghost:hover{ border-color: var(--ember); color: var(--ember); }
+  .dirB .metric b { color: var(--ink); font-size: 17px; }
+  .dirB .metric b em { font-style: normal; color: var(--ember); }
+  .dirB .panel { background: var(--card); border:1.5px solid var(--line); box-shadow: 0 30px 70px -34px color-mix(in srgb, var(--chili) 40%, transparent); }
+  .dirB .panel .bar { border-bottom:1.5px solid var(--line); color: var(--muted); }
+  .dirB .panel .bar i:nth-child(1){ background: var(--chili);} .dirB .panel .bar i:nth-child(2){ background: var(--ember);} .dirB .panel .bar i:nth-child(3){ background: var(--pandan);}
+  .dirB .skewer { background: var(--card); border:1.5px solid var(--line); }
+  .dirB .brandmark { color: var(--ember); }
+  .dirB .navlinks a.gh { background: var(--ink); color: var(--bg); border-radius:9px; padding:7px 13px; opacity:1; font-weight:600; }
+
+  /* pill / category tag used sparingly */
+  .kicker { display:inline-flex; align-items:center; gap:8px; font-family: var(--mono); font-size: 11.5px; letter-spacing:.04em;
+    padding: 5px 11px; border-radius:999px; border:1px solid var(--line); margin-bottom: 22px; }
+  .kicker .live { width:7px; height:7px; border-radius:50%; background: var(--ember); }
+  .dirB .kicker .live { background: var(--pandan); }
+
+  @media (max-width: 860px){
+    .grid { grid-template-columns: 1fr; gap: 34px; }
+    .navlinks { display:none; }
+    .wrap { padding: 24px 22px 56px; } nav.top{ padding: 22px 22px 8px; } .tag{ padding: 40px 22px 6px; }
+    .metrics{ gap:20px; }
+  }
+
+  @media (prefers-reduced-motion: no-preference){
+    .fade { opacity:0; transform: translateY(10px); animation: rise .7s cubic-bezier(.2,.7,.2,1) forwards; }
+    .fade.d1{animation-delay:.05s}.fade.d2{animation-delay:.13s}.fade.d3{animation-delay:.22s}.fade.d4{animation-delay:.32s}
+    @keyframes rise { to { opacity:1; transform:none; } }
+  }
+</style>
+
+<div class="rail">
+  <strong>Abang · Satay</strong>
+  <span class="hint">hero direction comparison — scroll: A then B</span>
+  <span class="sp"></span>
+  <button class="themebtn" id="tt">◐ toggle light / dark</button>
+</div>
+
+<!-- ============ DIRECTION A ============ -->
+<div class="tag">
+  <span class="id">A</span>
+  <h2>Ember, quietly</h2>
+  <p>Minimal &amp; premium. Cool ink, one restrained ember accent, code as the quiet proof.</p>
+</div>
+<section class="hero dirA">
+  <nav class="top">
+    <div class="brand">
+      <svg class="brandmark" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <line x1="3" y1="18" x2="21" y2="6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        <circle cx="7.5" cy="14.5" r="2.1" fill="currentColor"/>
+        <circle cx="12" cy="10.8" r="2.1" fill="currentColor"/>
+        <circle cx="16.5" cy="7.1" r="2.1" fill="currentColor"/>
+      </svg>
+      Abang <small>/ Satay</small>
+    </div>
+    <div class="navlinks">
+      <a href="#">Satay</a><a href="#">Roadmap</a><a href="#">Docs</a>
+      <a href="#" class="gh">GitHub ↗</a>
+    </div>
+  </nav>
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <span class="kicker fade d1"><span class="live"></span> Durable Python runtime</span>
+        <h1 class="head fade d1">Ordinary Python,<br>made <span class="em">durable</span>.</h1>
+        <p class="sub fade d2">Write async Python the way you already do. Satay records every step to an append-only journal, resumes cleanly after a crash, and shows you exactly what happened — no graph DSL, no hosted service.</p>
+        <div class="cta fade d3">
+          <a href="#" class="btn btn-primary btn-mono">pip install satay</a>
+          <a href="#" class="btn btn-ghost">Read the docs →</a>
+        </div>
+        <div class="metrics fade d4">
+          <div class="metric"><b>5 primitives</b><span>task · sleep · event · map · child</span></div>
+          <div class="metric"><b>Replay-safe</b><span>completed work never re-runs</span></div>
+          <div class="metric"><b>Local Studio</b><span><code style="font-family:var(--mono)">satay dev</code> · no cloud</span></div>
+        </div>
+      </div>
+      <div class="fade d3">
+        <div class="panel">
+          <div class="bar"><i></i><i></i><i></i><span class="fn">enrich.py</span></div>
+<pre class="code"><span class="kw">import</span> satay
+
+<span class="dec">@satay.task</span>(retries=<span class="pn">3</span>)
+<span class="kw">async def</span> <span class="fn">fetch</span>(url: str) -> dict:
+    <span class="cm"># your I/O, your SDK calls</span>
+    ...
+
+<span class="dec">@satay.workflow</span>
+<span class="kw">async def</span> <span class="fn">enrich</span>(urls: list[str]) -> Report:
+    pages = <span class="kw">await</span> satay.map(fetch, urls, concurrency=<span class="pn">8</span>)
+    draft = <span class="kw">await</span> summarize(pages)
+    ok    = <span class="kw">await</span> satay.wait_for_event(Approval, key=<span class="st">"review"</span>)
+    <span class="kw">return</span> <span class="kw">await</span> publish(draft) <span class="kw">if</span> ok <span class="kw">else</span> draft</pre>
+        </div>
+        <div class="skewer">
+          <div class="lbl">RUN TIMELINE · killed after summarize, resumed on restart</div>
+          <div class="stick">
+            <span class="bead" title="fetch"></span>
+            <span class="bead" title="fetch"></span>
+            <span class="bead" title="summarize"></span>
+            <span class="bead crash" title="crash"></span>
+            <span class="bead resume" title="replay"></span>
+            <span class="bead" title="wait_for_event"></span>
+            <span class="bead" title="publish"></span>
+          </div>
+          <div class="beadrow">
+            <span>fetch×8</span><span>summarize</span><span class="dot-accent">✕ crash</span><span>replay</span><span>await approval</span><span>publish</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DIRECTION B ============ -->
+<div class="tag">
+  <span class="id">B</span>
+  <h2>Over the coals</h2>
+  <p>Bold &amp; warm. Big type, ember→chili gradient, a pandan-green resume node — a kueh palette that leans into the Abang story.</p>
+</div>
+<section class="hero dirB">
+  <div class="glow"></div>
+  <nav class="top">
+    <div class="brand">
+      <svg class="brandmark" width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <line x1="3" y1="18" x2="21" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="7.5" cy="14.5" r="2.3" fill="currentColor"/>
+        <circle cx="12" cy="10.8" r="2.3" fill="currentColor"/>
+        <circle cx="16.5" cy="7.1" r="2.3" fill="currentColor"/>
+      </svg>
+      Abang <small>/ Satay</small>
+    </div>
+    <div class="navlinks">
+      <a href="#">Satay</a><a href="#">Roadmap</a><a href="#">Docs</a>
+      <a href="#" class="gh">GitHub ↗</a>
+    </div>
+  </nav>
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <span class="kicker fade d1"><span class="live"></span> Durable Python runtime</span>
+        <h1 class="head fade d1">Crash it.<br>Restart it.<br><span class="fire">Nothing gets redone.</span></h1>
+        <p class="sub fade d2">Satay is a transparent, durable Python runtime. Write ordinary async Python — it records every step, survives failures, and replays exactly what happened. No framework tax.</p>
+        <div class="cta fade d3">
+          <a href="#" class="btn btn-primary btn-mono">pip install satay</a>
+          <a href="#" class="btn btn-ghost">Read the docs</a>
+        </div>
+        <div class="metrics fade d4">
+          <div class="metric"><b><em>0</em> work redone</b><span>replay reuses journaled results</span></div>
+          <div class="metric"><b><em>1</em> command</b><span><code style="font-family:var(--mono)">satay dev</code> runs it all, locally</span></div>
+          <div class="metric"><b><em>0</em> graph DSL</b><span>plain if / for / try</span></div>
+        </div>
+      </div>
+      <div class="fade d3">
+        <div class="panel">
+          <div class="bar"><i></i><i></i><i></i><span class="fn">enrich.py</span></div>
+<pre class="code"><span class="kw">import</span> satay
+
+<span class="dec">@satay.task</span>(retries=<span class="pn">3</span>)
+<span class="kw">async def</span> <span class="fn">fetch</span>(url: str) -> dict:
+    <span class="cm"># your I/O, your SDK calls</span>
+    ...
+
+<span class="dec">@satay.workflow</span>
+<span class="kw">async def</span> <span class="fn">enrich</span>(urls: list[str]) -> Report:
+    pages = <span class="kw">await</span> satay.map(fetch, urls, concurrency=<span class="pn">8</span>)
+    draft = <span class="kw">await</span> summarize(pages)
+    ok    = <span class="kw">await</span> satay.wait_for_event(Approval, key=<span class="st">"review"</span>)
+    <span class="kw">return</span> <span class="kw">await</span> publish(draft) <span class="kw">if</span> ok <span class="kw">else</span> draft</pre>
+        </div>
+        <div class="skewer">
+          <div class="lbl">RUN TIMELINE · killed after summarize, resumed on restart</div>
+          <div class="stick">
+            <span class="bead" title="fetch"></span>
+            <span class="bead" title="fetch"></span>
+            <span class="bead" title="summarize"></span>
+            <span class="bead crash" title="crash"></span>
+            <span class="bead resume" title="replay"></span>
+            <span class="bead" title="wait_for_event"></span>
+            <span class="bead" title="publish"></span>
+          </div>
+          <div class="beadrow">
+            <span>fetch×8</span><span>summarize</span><span style="color:var(--chili)">✕ crash</span><span style="color:var(--pandan)">↻ resume</span><span>await approval</span><span>publish</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function(){
+    var btn = document.getElementById('tt');
+    function cur(){
+      var a = document.documentElement.getAttribute('data-theme');
+      if (a) return a;
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    btn.addEventListener('click', function(){
+      var next = cur() === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+    });
+  })();
+</script>

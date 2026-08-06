@@ -1,6 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Load-bearing: without this, mobile browsers lay the page out at ~980px and
+     zoom out, so every `@media (max-width: …)` rule below never fires. The page
+     shipped without a <head> at all until 2026-08-07. -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Abang · AI tools that show their work</title>
+<meta name="description" content="Abang builds durable, inspectable tools for working with AI: satay, a durable execution runtime for async Python with a local debugger, and sibei-flow, an AI SRE that fixes broken data pipelines as reviewable pull requests.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f7f2ea" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#17110c" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://leejianrong.github.io/abang-landing-page/">
+<!-- No og:image yet: a card referencing a file that does not exist renders worse
+     than a card with no image. Add one and reference it here. -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Abang · AI tools that show their work">
+<meta property="og:description" content="A durable execution runtime that records every step of a run, and the products built on top of it. Open source, self-hosted, no account.">
+<meta property="og:url" content="https://leejianrong.github.io/abang-landing-page/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Abang · AI tools that show their work">
+<meta name="twitter:description" content="A durable execution runtime that records every step of a run, and the products built on top of it. Open source, self-hosted, no account.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 46 34'%3E%3Cg fill='none' stroke='%23de5f1c' stroke-width='3' stroke-linejoin='round'%3E%3Cpolygon points='15,5 27,17 15,29 3,17'/%3E%3Cpolygon points='31,5 43,17 31,29 19,17'/%3E%3C/g%3E%3C/svg%3E">
+</head>
+<body>
 <style>
   /* ============================================================
-     Abang / Satay — landing page
+     Abang · landing page
      Light-first · warm "kueh" palette · solid colours · theme-aware
      Signature: interlocked ketupat mark + threaded skewer timeline
      ============================================================ */
@@ -68,8 +94,11 @@
   .hero-grid { display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:center; }
   .tag { display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:11.5px; letter-spacing:.04em; color:var(--muted); padding:5px 11px; border-radius:999px; border:1px solid var(--line); margin-bottom:24px; }
   .tag .live { width:7px; height:7px; border-radius:50%; background:var(--pandan); }
-  h1.head { margin:0; font-size:clamp(42px,6.2vw,76px); font-weight:800; line-height:1.0; letter-spacing:-.04em; }
-  h1.head .em { color:var(--ember); }
+  /* Element-agnostic: the Abang hero uses h1.head, the Satay section below reuses
+     the same treatment on an h2 so the page keeps exactly one h1. */
+  .head { margin:0; font-size:clamp(42px,6.2vw,76px); font-weight:800; line-height:1.0; letter-spacing:-.04em; }
+  h2.head { font-size:clamp(34px,4.8vw,58px); }
+  .head .em { color:var(--ember); }
   .sub { margin:24px 0 0; font-size:18.5px; line-height:1.55; max-width:46ch; color:var(--muted); }
   .sub b { color:var(--ink); font-weight:640; }
   .cta { display:flex; align-items:center; gap:14px; margin-top:34px; flex-wrap:wrap; }
@@ -170,11 +199,40 @@
   .prod h3 { margin:0; font-size:21px; font-weight:750; letter-spacing:-.025em; }
   .status { margin-left:auto; font-family:var(--mono); font-size:10.5px; font-weight:600; padding:4px 10px; border-radius:999px; letter-spacing:.03em; }
   .status.ship { color:var(--pandan); background:color-mix(in srgb,var(--pandan) 15%,transparent); }
+  .status.alpha { color:var(--ember); background:color-mix(in srgb,var(--ember) 15%,transparent); }
   .status.cook { color:var(--ember); background:color-mix(in srgb,var(--ember) 15%,transparent); }
+  /* "Planned" is deliberately the quietest pill: nothing is built yet and the
+     badge should not borrow confidence from the two that ship. */
+  .status.plan { color:var(--muted); background:color-mix(in srgb,var(--muted) 13%,transparent); border:1px solid var(--line); }
   .status.research { color:var(--palm); background:color-mix(in srgb,var(--palm) 16%,transparent); }
   .prod p { margin:0 0 16px; font-size:14.5px; color:var(--muted); line-height:1.58; }
+  .prod p:last-of-type { margin-bottom:16px; }
   .prod .link { margin-top:auto; font-size:14px; font-weight:600; color:var(--ember); text-decoration:none; }
   .prod .link:hover { text-decoration:underline; }
+  .prod .links { margin-top:auto; display:flex; gap:18px; flex-wrap:wrap; }
+  .prod .links a { font-size:14px; font-weight:600; color:var(--ember); text-decoration:none; }
+  .prod .links a:hover { text-decoration:underline; }
+  .prod .pair { font-family:var(--mono); font-size:11px; letter-spacing:.04em; text-transform:uppercase; color:var(--faint,var(--muted)); opacity:.8; margin-bottom:10px; }
+  /* The model spans the row: it is the one item that is not software you install,
+     and grouping it with the harness pair would misread as a fifth peer. */
+  .prod.wide { grid-column:1 / -1; }
+
+  /* ---------- research strip (smaller than a product, honestly labelled) ---------- */
+  .research-strip { margin-top:20px; display:grid; grid-template-columns:1fr; gap:14px; }
+  .rs { display:flex; gap:16px; align-items:flex-start; padding:18px 22px; border:1px dashed var(--line); border-radius:14px; background:transparent; }
+  .rs h4 { margin:0 0 5px; font-size:15.5px; font-weight:700; letter-spacing:-.015em; }
+  .rs p { margin:0; font-size:14px; color:var(--muted); line-height:1.55; max-width:70ch; }
+  .rs .status { margin-left:auto; align-self:center; flex:none; }
+
+  /* ---------- umbrella hero (Abang-level, single column) ---------- */
+  .hero-solo { max-width:800px; }
+  .hero-solo .sub { max-width:62ch; }
+  /* Marks the boundary where the page stops being about Abang and starts being
+     about Satay specifically. */
+  /* Distinct from `.tag`, which is a bordered pill — this is a naked kicker rule. */
+  .prodhead { display:flex; align-items:center; gap:10px; margin-bottom:22px; }
+  .prodkick { display:inline-flex; align-items:center; gap:9px; font-family:var(--mono); font-size:11.5px; letter-spacing:.07em; text-transform:uppercase; color:var(--ember); }
+  .prodkick::before { content:""; width:22px; height:1.5px; background:var(--ember); flex:none; }
 
   /* ---------- final cta ---------- */
   .final { text-align:center; padding:88px 0; background:var(--bg2); }
@@ -232,37 +290,120 @@
         <line x1="20.5" y1="15.5" x2="23" y2="13" stroke="currentColor" stroke-width="2"/>
         <line x1="25.5" y1="18.5" x2="23" y2="21" stroke="currentColor" stroke-width="2"/>
       </svg>
-      Abang <small>/ Satay</small>
+      Abang
     </a>
     <div class="navlinks">
+      <a href="#products">Products</a>
+      <a href="#satay">satay</a>
       <a href="#how">How it works</a>
-      <a href="#why">Why Satay</a>
       <a href="#studio">Studio</a>
-      <a href="#roadmap">Roadmap</a>
-      <a href="#" class="tl">Docs</a>
-      <a href="#" class="gh">GitHub ↗</a>
+      <a href="https://leejianrong.github.io/satay-runtime/" class="tl">Docs</a>
+      <a href="https://github.com/leejianrong" class="gh">GitHub ↗</a>
       <button class="themebtn tl" id="tt">◐</button>
     </div>
   </div>
 </div>
 
-<!-- ============ HERO ============ -->
+<!-- ============ HERO (Abang umbrella) ============ -->
 <a id="top"></a>
 <section class="hero">
-  <div class="container hero-grid">
-    <div>
-      <h1 class="head reveal">Durable workflows that <span class="em">show their work</span>.</h1>
-      <p class="sub reveal">Write your workflow as ordinary async code. Satay records every step to an append-only journal, so a crashed run <b>picks up where it stopped</b> and you can see <b>exactly what happened</b>. No graph DSL, no hosted service.</p>
+  <div class="container">
+    <div class="hero-solo">
+      <h1 class="head reveal">AI tools that <span class="em">show their work</span>.</h1>
+      <p class="sub reveal">Abang builds durable, inspectable tools for working with AI. It starts with a runtime that records every step of a run, so anything built on top can be replayed and explained instead of guessed at. Everything runs on your own machine. <b>Two products ship today and three are still in the kitchen.</b></p>
       <div class="cta reveal">
-        <a href="#" class="btn btn-primary mono">pip install satay</a>
-        <a href="#" class="btn btn-ghost">Read the docs →</a>
+        <a href="#products" class="btn btn-primary">See what we build →</a>
+        <a href="https://leejianrong.github.io/satay-runtime/" class="btn btn-ghost">satay docs →</a>
       </div>
       <div class="metrics reveal">
-        <div class="metric"><b><em>0</em> work redone</b><span>replay reuses recorded results</span></div>
-        <div class="metric"><b><em>1</em> command</b><span><code>satay dev</code> runs it all, locally</span></div>
-        <div class="metric"><b><em>0</em> graph DSL</b><span>plain if / for / try</span></div>
+        <div class="metric"><b><em>2</em> shipping today</b><span>satay and sibei-flow, both Apache-2.0</span></div>
+        <div class="metric"><b><em>0</em> hosted services</b><span>self-host everything, no account</span></div>
+        <div class="metric"><b><em>1</em> journal</b><span>the thread every product shares</span></div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ============ PRODUCTS ============ -->
+<section class="section alt" id="products">
+  <div class="container">
+    <div class="lead reveal">
+      <h2 class="h2">What we build</h2>
+      <p class="deck">Five products, labelled honestly. Two you can install today. The other three are named here because we're building them, not because they're ready.</p>
+    </div>
+    <div class="road">
+
+      <div class="prod flag reveal">
+        <div class="ph"><h3>satay</h3><span class="status alpha">Alpha</span></div>
+        <p>A durable execution runtime for async Python. Write ordinary <code class="mono">async def</code> workflows, and every durable call lands in an append-only journal, so a crashed run replays from the top and reuses what already finished.</p>
+        <p>It also ships a local debugger: <b>fork a run from any point</b> and compare two runs call by call. On PyPI now at <code class="mono">0.1.0a3</code>, and the docs are honest about what's missing.</p>
+        <div class="links">
+          <a href="https://leejianrong.github.io/satay-runtime/">Read the docs →</a>
+          <a href="https://github.com/leejianrong/satay-runtime">GitHub ↗</a>
+        </div>
+      </div>
+
+      <div class="prod flag reveal">
+        <div class="ph"><h3>sibei-flow</h3><span class="status ship">Available</span></div>
+        <p>An AI SRE for data pipelines. When a dbt or Airflow job breaks, <code class="mono">sbflow</code> reads the failing model, drafts the smallest fix that works, verifies it in a throwaway sandbox, and opens a pull request with the diff, an explanation and its evidence.</p>
+        <p>Four deterministic gates decide whether you ever see a draft. <b>It holds no prod-write credentials</b>, so merging is the approval and <code class="mono">git revert</code> is the rollback.</p>
+        <div class="links">
+          <a href="https://leejianrong.github.io/sibei-flow/">Read the docs →</a>
+          <a href="https://github.com/leejianrong/sibei-flow">GitHub ↗</a>
+        </div>
+      </div>
+
+      <div class="prod reveal">
+        <div class="pair">Shared engine · built on satay</div>
+        <div class="ph"><h3>kopicode</h3><span class="status plan">Planned</span></div>
+        <p>A coding agent for the terminal. Because its loop runs on satay, <b>every session is a journal</b>, so you can replay it, fork it at the turn where it went wrong, and diff two attempts instead of scrolling back and guessing.</p>
+      </div>
+
+      <div class="prod reveal">
+        <div class="pair">Shared engine · built on satay</div>
+        <div class="ph"><h3>sotong</h3><span class="status plan">Planned</span></div>
+        <p>An assistant that runs on your own machine, always on, reachable from the places you already type. It acts on schedules and triggers rather than waiting to be opened.</p>
+        <p>Same engine as kopicode, kept as a <b>separate product</b>: something that acts while nobody is watching needs a stricter safety model than something you're supervising.</p>
+      </div>
+
+      <div class="prod wide reveal">
+        <div class="ph"><h3>Our own model</h3><span class="status plan">Planned</span></div>
+        <p>An open-weights model of our own, in the works. Aimed at agentic, tool-using work rather than chat, and small enough to download and run yourself.</p>
+        <p>The training data is the interesting part. Once kopicode exists its sessions are satay journals, so we get real traces with the tool calls, retries and failures intact, and evaluation we can replay.</p>
+      </div>
+
+    </div>
+
+    <div class="research-strip reveal">
+      <div class="rs">
+        <div>
+          <h4>Synthetic data</h4>
+          <p>Tooling to generate synthetic datasets for training and evaluation, so a pipeline can be tested against realistic data before the real thing exists. Early research, and the least defined thing here.</p>
+        </div>
+        <span class="status research">Research</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SATAY, UP CLOSE ============ -->
+<section class="section" id="satay">
+  <div class="container">
+    <div class="prodhead reveal"><span class="prodkick">satay, up close</span></div>
+    <div class="hero-grid">
+      <div>
+        <h2 class="head reveal">Ordinary async code, <span class="em">made durable</span>.</h2>
+        <p class="sub reveal">Write your workflow as plain async Python, and every step lands in an append-only journal, so a crashed run <b>picks up where it stopped</b> and you can see exactly what happened. No graph DSL, no hosted service.</p>
+        <div class="cta reveal">
+          <a href="https://pypi.org/project/satay/" class="btn btn-primary mono">pip install satay</a>
+          <a href="https://leejianrong.github.io/satay-runtime/" class="btn btn-ghost">Read the docs →</a>
+        </div>
+        <div class="metrics reveal">
+          <div class="metric"><b><em>0</em> work redone</b><span>replay reuses recorded results</span></div>
+          <div class="metric"><b><em>1</em> command</b><span><code>satay dev</code> runs it all, locally</span></div>
+          <div class="metric"><b><em>0</em> graph DSL</b><span>plain if / for / try</span></div>
+        </div>
+      </div>
 
     <div class="reveal">
       <div class="panel">
@@ -293,6 +434,7 @@
         </div>
       </div>
     </div>
+    </div>
   </div>
 </section>
 
@@ -317,7 +459,7 @@
       <div class="step reveal">
         <div class="no">03</div>
         <h3>Crash, restart, resume</h3>
-        <p>Kill the process mid-run and start it again. Satay replays the workflow, hands back the results it already recorded, and runs only the work that never finished. Completed tasks never run twice.</p>
+        <p>Kill the process mid-run and start it again: satay replays the workflow, hands back the results it already recorded, and runs only the work that never finished. Completed tasks never run twice.</p>
       </div>
     </div>
   </div>
@@ -328,12 +470,12 @@
   <div class="container">
     <div class="lead reveal">
       <h2 class="h2">Why not a framework?</h2>
-      <p class="deck">Most teams building durable AI workflows reach for an orchestration framework and end up rewriting their app around it. You trade your code for a graph, your exceptions for framework errors, and your debugger for a dashboard you log into. Satay takes the other bet: keep your code, add durability underneath it.</p>
+      <p class="deck">Most teams building durable AI workflows reach for an orchestration framework and end up rewriting their app around it. You trade your code for a graph, your exceptions for framework errors, and your debugger for a dashboard you log into. satay takes the other bet: keep your code, add durability underneath it.</p>
     </div>
     <div class="cmp reveal">
       <table>
         <thead>
-          <tr><th></th><th>The LangGraph / LangChain stack</th><th class="satay">Satay</th></tr>
+          <tr><th></th><th>The LangGraph / LangChain stack</th><th class="satay">satay</th></tr>
         </thead>
         <tbody>
           <tr><th>Programming model</th><td class="frame">A graph of nodes and edges you declare up front</td><td class="satay col-satay">Plain async functions and normal control flow</td></tr>
@@ -353,11 +495,11 @@
   <div class="container">
     <div class="lead reveal">
       <h2 class="h2">See exactly what happened</h2>
-      <p class="deck"><code class="mono" style="color:var(--ember)">satay dev</code> starts everything locally: the worker, the store, the control API, and Satay Studio in your browser. Open a run to get the full timeline, every attempt behind each task, native stack traces on failures, and the token and cost breakdown per call.</p>
+      <p class="deck"><code class="mono" style="color:var(--ember)">satay dev</code> starts everything locally: the worker, the store, the control API, and satay studio in your browser. Open a run to get the full timeline, every attempt behind each task, native stack traces on failures, and the token and cost breakdown per call.</p>
     </div>
 
     <div class="studio reveal">
-      <div class="chrome"><i></i><i></i><i></i><span class="url mono">localhost:8787 · Satay Studio</span></div>
+      <div class="chrome"><i></i><i></i><i></i><span class="url mono">localhost:8787 · satay studio</span></div>
       <div class="top-timeline">
         <div class="lbl">RUN a3f2 · enrich · resumed once</div>
         <div class="stick">
@@ -403,45 +545,14 @@
 </section>
 
 <!-- ============ ROADMAP ============ -->
-<section class="section" id="roadmap">
-  <div class="container">
-    <div class="lead reveal">
-      <h2 class="h2">What we're cooking</h2>
-      <p class="deck">Satay is the first thing out of the Abang kitchen. Here's the rest of what we're building, from shipping now to early research.</p>
-    </div>
-    <div class="road">
-      <div class="prod flag reveal">
-        <div class="ph"><h3>Satay</h3><span class="status ship">Available</span></div>
-        <p>A transparent, durable runtime for AI-enabled apps and workflows. Durable execution and a local debugger, without the framework tax. This is what the rest of the page is about.</p>
-        <a class="link" href="#top">Read the docs →</a>
-      </div>
-      <div class="prod reveal">
-        <div class="ph"><h3>Open-weights model</h3><span class="status cook">Cooking</span></div>
-        <p>A 30B open-weights language model, fine-tuned with QLoRA on Qwen 3. Weights you can download and run yourself, tuned for the kind of agentic, tool-using work Satay orchestrates.</p>
-        <a class="link" href="#">Get notified →</a>
-      </div>
-      <div class="prod reveal">
-        <div class="ph"><h3>Synthetic data</h3><span class="status cook">Cooking</span></div>
-        <p>Tooling to generate synthetic datasets for training and evaluation, so you can build and test on realistic data before you have the real thing.</p>
-        <a class="link" href="#">Get notified →</a>
-      </div>
-      <div class="prod reveal">
-        <div class="ph"><h3>Knowledge-graph eval</h3><span class="status research">Research</span></div>
-        <p>Construction plus a new way to measure it. Start from a golden, ground-truth graph, synthesise documents and images from it, rebuild a graph with Graph RAG, then score the reconstruction and retrieval against the original.</p>
-        <a class="link" href="#">Read the research →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ============ FINAL CTA ============ -->
 <section class="final">
   <div class="container">
-    <h2 class="reveal">Make your workflows durable.</h2>
-    <p class="reveal">Install Satay, run <code class="mono">satay dev</code>, and watch a run survive a crash on your own machine.</p>
+    <h2 class="reveal">Start with the one that ships.</h2>
+    <p class="reveal">Install satay, run <code class="mono">satay dev</code>, and watch a run survive a crash on your own machine. The rest of the kitchen is built on top of it.</p>
     <div class="cta reveal">
-      <a href="#" class="btn btn-primary mono">pip install satay</a>
-      <a href="#" class="btn btn-ghost">Read the docs →</a>
+      <a href="https://pypi.org/project/satay/" class="btn btn-primary mono">pip install satay</a>
+      <a href="https://leejianrong.github.io/satay-runtime/" class="btn btn-ghost">Read the docs →</a>
     </div>
   </div>
 </section>
@@ -462,21 +573,22 @@
           </svg>
           Abang
         </a>
-        <p>Durable, inspectable tools for building with AI.</p>
+        <p>Durable, inspectable tools for working with AI.</p>
         <div class="home">Abang is Malay for “older brother”.</div>
       </div>
       <div class="foot-col">
-        <h5>Product</h5>
-        <a href="#top">Satay</a>
-        <a href="#">Docs</a>
-        <a href="#">GitHub</a>
-        <a href="#studio">Studio</a>
+        <h5>Shipping</h5>
+        <a href="https://leejianrong.github.io/satay-runtime/">satay</a>
+        <a href="https://leejianrong.github.io/sibei-flow/">sibei-flow</a>
+        <a href="#studio">satay studio</a>
+        <a href="https://pypi.org/project/satay/">satay on PyPI</a>
       </div>
       <div class="foot-col">
-        <h5>Company</h5>
-        <a href="#roadmap">Roadmap</a>
-        <a href="#">Research</a>
-        <a href="#">Contact</a>
+        <h5>In the kitchen</h5>
+        <a href="#products">kopicode</a>
+        <a href="#products">sotong</a>
+        <a href="#products">The model</a>
+        <a href="https://github.com/leejianrong">GitHub ↗</a>
       </div>
     </div>
     <div class="foot-bottom">
@@ -501,3 +613,5 @@
     els.forEach(function(e){ io.observe(e); });
   })();
 </script>
+</body>
+</html>

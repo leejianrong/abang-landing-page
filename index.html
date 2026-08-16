@@ -16,11 +16,11 @@
      than a card with no image. Add one and reference it here. -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Abang · AI tools that show their work">
-<meta property="og:description" content="A durable execution runtime that records every step of a run, and the products built on top of it. Open source, self-hosted, no account.">
+<meta property="og:description" content="A durable execution runtime that records every step of a run, and the tools built alongside it. Open source, self-hosted, no account.">
 <meta property="og:url" content="https://leejianrong.github.io/abang-landing-page/">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Abang · AI tools that show their work">
-<meta name="twitter:description" content="A durable execution runtime that records every step of a run, and the products built on top of it. Open source, self-hosted, no account.">
+<meta name="twitter:description" content="A durable execution runtime that records every step of a run, and the tools built alongside it. Open source, self-hosted, no account.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 46 34'%3E%3Cg fill='none' stroke='%23de5f1c' stroke-width='3' stroke-linejoin='round'%3E%3Cpolygon points='15,5 27,17 15,29 3,17'/%3E%3Cpolygon points='31,5 43,17 31,29 19,17'/%3E%3C/g%3E%3C/svg%3E">
 </head>
 <body>
@@ -213,8 +213,10 @@
   .prod .links a { font-size:14px; font-weight:600; color:var(--ember); text-decoration:none; }
   .prod .links a:hover { text-decoration:underline; }
   .prod .pair { font-family:var(--mono); font-size:11px; letter-spacing:.04em; text-transform:uppercase; color:var(--faint,var(--muted)); opacity:.8; margin-bottom:10px; }
-  /* The model spans the row: it is the one item that is not software you install,
-     and grouping it with the harness pair would misread as a fifth peer. */
+  /* Full-width tiles sit after the paired ones, so the two-column rows stay whole.
+     tingkat and the model both take it: neither is software you install today, and
+     dropping either into the pair grid would misread it as a peer of the two that
+     ship. Keep these last in source order or the row above ends up with a hole. */
   .prod.wide { grid-column:1 / -1; }
 
   /* ---------- research strip (smaller than a product, honestly labelled) ---------- */
@@ -310,7 +312,7 @@
   <div class="container">
     <div class="hero-solo">
       <h1 class="head reveal">AI tools that <span class="em">show their work</span>.</h1>
-      <p class="sub reveal">Abang builds durable, inspectable tools for working with AI. It starts with a runtime that records every step of a run, so anything built on top can be replayed and explained instead of guessed at. Everything runs on your own machine. <b>Two products ship today and three are still in the kitchen.</b></p>
+      <p class="sub reveal">Abang builds durable, inspectable tools for working with AI. It starts with a runtime that records every step of a run, and the same habit carries through the rest: whatever the tool did, it leaves a record you can replay or check instead of guessing at it. Everything runs on your own machine. <b>Two products ship today and four are still in the kitchen.</b></p>
       <div class="cta reveal">
         <a href="#products" class="btn btn-primary">See what we build →</a>
         <a href="https://leejianrong.github.io/satay-runtime/" class="btn btn-ghost">satay docs →</a>
@@ -318,7 +320,7 @@
       <div class="metrics reveal">
         <div class="metric"><b><em>2</em> shipping today</b><span>satay and sibei-flow, both Apache-2.0</span></div>
         <div class="metric"><b><em>0</em> hosted services</b><span>self-host everything, no account</span></div>
-        <div class="metric"><b><em>1</em> journal</b><span>the thread every product shares</span></div>
+        <div class="metric"><b><em>1</em> rule</b><span>every tool leaves a record you can check</span></div>
       </div>
     </div>
   </div>
@@ -329,7 +331,7 @@
   <div class="container">
     <div class="lead reveal">
       <h2 class="h2">What we build</h2>
-      <p class="deck">Five products, labelled honestly. Two you can install today. The other three are named here because we're building them, not because they're ready.</p>
+      <p class="deck">Six products, labelled honestly. Two you can install today. The other four are here because we intend to build them, not because any of them is ready.</p>
     </div>
     <div class="road">
 
@@ -354,22 +356,34 @@
       </div>
 
       <div class="prod reveal">
-        <div class="pair">Shared engine · built on satay</div>
+        <div class="pair">Own journal · git shadow refs</div>
         <div class="ph"><h3>kopicode</h3><span class="status plan">Planned</span></div>
-        <p>A coding agent for the terminal. Because its loop runs on satay, <b>every session is a journal</b>, so you can replay it, fork it at the turn where it went wrong, and diff two attempts instead of scrolling back and guessing.</p>
+        <p>A coding agent for the terminal, written in Go and shipped as a single binary. It keeps <b>its own append-only record</b> of a session, every message, tool call and permission decision, and snapshots the working tree to a git ref after each turn, so forking at the turn where things went wrong rewinds your files along with the conversation.</p>
+        <p>It does not run on satay. A durable-execution journal records what the agent decided, not what happened to your repo, so a replayed fork would rewind the conversation over a working tree that never moved. git versions the files; the journal records why.</p>
       </div>
 
       <div class="prod reveal">
-        <div class="pair">Shared engine · built on satay</div>
+        <div class="pair">Built on satay</div>
         <div class="ph"><h3>sotong</h3><span class="status plan">Planned</span></div>
-        <p>An assistant that runs on your own machine, always on, reachable from the places you already type. It acts on schedules and triggers rather than waiting to be opened.</p>
-        <p>Same engine as kopicode, kept as a <b>separate product</b>: something that acts while nobody is watching needs a stricter safety model than something you're supervising.</p>
+        <p>An assistant that runs on your own machine, always on, reachable from the places you already type. It acts on schedules and triggers rather than waiting to be opened. <b>Nothing is built yet and there is no timeline.</b></p>
+        <p>It stays a separate product from kopicode rather than a mode of it, because something that acts while nobody is watching needs a stricter safety model than something you're supervising. It is also where satay fits: a run that dies overnight has nobody to retype the prompt, and replay is built for that.</p>
+      </div>
+
+      <div class="prod wide reveal">
+        <div class="pair">Phase 0 · a benchmark, not the product</div>
+        <div class="ph"><h3>tingkat</h3><span class="status research">Research</span></div>
+        <p>A control plane for teams serving many LoRA adapters on GPUs they run themselves. The bet is that sending each request to a replica that already holds its adapter beats round-robin: fewer cold starts, a shorter tail, the same hardware.</p>
+        <p>Phase 0 tests that bet before any of the product is built. It is a discrete-event simulator, no vLLM and no GPUs, running the same seeded workload through both routing strategies. At 16 replicas, affinity routing cut cold starts by 89% against round-robin, clearing the 80% gate the PRD set. On an eight-replica fleet at 85% utilisation, p99 time-to-first-token improved by 47%. Affinity costs you some load imbalance, and the README shows that column rather than hiding it.</p>
+        <p><b>These numbers are simulated.</b> Warm-set staleness, prefix caching and real cold-start physics only turn up on hardware, so the next gate is a validation run against real vLLM. That harness is built and tested against a mock, and the GPU run has not happened yet.</p>
+        <div class="links">
+          <a href="https://github.com/leejianrong/tingkat">Read the benchmark ↗</a>
+        </div>
       </div>
 
       <div class="prod wide reveal">
         <div class="ph"><h3>Our own model</h3><span class="status plan">Planned</span></div>
         <p>An open-weights model of our own, in the works. Aimed at agentic, tool-using work rather than chat, and small enough to download and run yourself.</p>
-        <p>The training data is the interesting part. Once kopicode exists its sessions are satay journals, so we get real traces with the tool calls, retries and failures intact, and evaluation we can replay.</p>
+        <p>The training data is the interesting part. Once kopicode exists, every session it records is a typed event log rather than scrollback, so we get real traces with the tool calls, retries and failures intact, and evaluation we can replay.</p>
       </div>
 
     </div>
@@ -549,7 +563,7 @@
 <section class="final">
   <div class="container">
     <h2 class="reveal">Start with the one that ships.</h2>
-    <p class="reveal">Install satay, run <code class="mono">satay dev</code>, and watch a run survive a crash on your own machine. The rest of the kitchen is built on top of it.</p>
+    <p class="reveal">Install satay, run <code class="mono">satay dev</code>, and watch a run survive a crash on your own machine. The rest of the kitchen is still cooking.</p>
     <div class="cta reveal">
       <a href="https://pypi.org/project/satay/" class="btn btn-primary mono">pip install satay</a>
       <a href="https://leejianrong.github.io/satay-runtime/" class="btn btn-ghost">Read the docs →</a>
@@ -586,6 +600,7 @@
       <div class="foot-col">
         <h5>In the kitchen</h5>
         <a href="#products">kopicode</a>
+        <a href="#products">tingkat</a>
         <a href="#products">sotong</a>
         <a href="#products">The model</a>
         <a href="https://github.com/leejianrong">GitHub ↗</a>

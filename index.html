@@ -7,7 +7,7 @@
      shipped without a <head> at all until 2026-08-07. -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Abang · AI tools that show their work</title>
-<meta name="description" content="Abang builds durable, inspectable tools for working with AI: satay, a durable execution runtime for async Python with a local debugger, and sibei-flow, an AI SRE that fixes broken data pipelines as reviewable pull requests.">
+<meta name="description" content="Abang builds durable, inspectable tools for working with AI: a durable execution runtime, an AI SRE for data pipelines, a terminal coding agent, and more. Self-hosted by default, Apache-2.0.">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f7f2ea" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#17110c" media="(prefers-color-scheme: dark)">
@@ -214,9 +214,9 @@
   .prod .links a:hover { text-decoration:underline; }
   .prod .pair { font-family:var(--mono); font-size:11px; letter-spacing:.04em; text-transform:uppercase; color:var(--faint,var(--muted)); opacity:.8; margin-bottom:10px; }
   /* Full-width tiles sit after the paired ones, so the two-column rows stay whole.
-     tingkat and the model both take it: neither is software you install today, and
-     dropping either into the pair grid would misread it as a peer of the two that
-     ship. Keep these last in source order or the row above ends up with a hole. */
+     The model takes it: it's not software you install today, and dropping it into
+     the pair grid would misread it as a peer of the four that ship. Keep wide tiles
+     last in source order or the row above ends up with a hole. */
   .prod.wide { grid-column:1 / -1; }
 
   /* ---------- research strip (smaller than a product, honestly labelled) ---------- */
@@ -312,13 +312,13 @@
   <div class="container">
     <div class="hero-solo">
       <h1 class="head reveal">AI tools that <span class="em">show their work</span>.</h1>
-      <p class="sub reveal">Abang builds durable, inspectable tools for working with AI. It starts with a runtime that records every step of a run, and the same habit carries through the rest: whatever the tool did, it leaves a record you can replay or check instead of guessing at it. Everything runs on your own machine. <b>Two products ship today and four are still in the kitchen.</b></p>
+      <p class="sub reveal">Abang builds durable, inspectable tools for working with AI. It starts with a runtime that records every step of a run, and the same habit carries through the rest: whatever the tool did, it leaves a record you can replay or check instead of guessing at it. Everything runs on your own machine. <b>Four products ship today and three are still in the kitchen.</b></p>
       <div class="cta reveal">
         <a href="#products" class="btn btn-primary">See what we build →</a>
         <a href="https://leejianrong.github.io/satay-runtime/" class="btn btn-ghost">satay docs →</a>
       </div>
       <div class="metrics reveal">
-        <div class="metric"><b><em>2</em> shipping today</b><span>satay and sibei-flow, both Apache-2.0</span></div>
+        <div class="metric"><b><em>4</em> shipping today</b><span>satay, sibei-flow, kopicode and indah, all Apache-2.0</span></div>
         <div class="metric"><b><em>0</em> hosted services</b><span>self-host everything, no account</span></div>
         <div class="metric"><b><em>1</em> rule</b><span>every tool leaves a record you can check</span></div>
       </div>
@@ -331,7 +331,7 @@
   <div class="container">
     <div class="lead reveal">
       <h2 class="h2">What we build</h2>
-      <p class="deck">Six products, labelled honestly. Two you can install today. The other four are here because we intend to build them, not because any of them is ready.</p>
+      <p class="deck">Seven products, labelled honestly. Four you can install today. The other three are here because we intend to build them, not because any of them is ready.</p>
     </div>
     <div class="road">
 
@@ -355,29 +355,41 @@
         </div>
       </div>
 
-      <div class="prod reveal">
-        <div class="pair">Own journal · git shadow refs</div>
-        <div class="ph"><h3>kopicode</h3><span class="status plan">Planned</span></div>
+      <div class="prod flag reveal">
+        <div class="ph"><h3>kopicode</h3><span class="status alpha">Alpha</span></div>
         <p>A coding agent for the terminal, written in Go and shipped as a single binary. It keeps <b>its own append-only record</b> of a session, every message, tool call and permission decision, and snapshots the working tree to a git ref after each turn, so forking at the turn where things went wrong rewinds your files along with the conversation.</p>
-        <p>It does not run on satay. A durable-execution journal records what the agent decided, not what happened to your repo, so a replayed fork would rewind the conversation over a working tree that never moved. git versions the files; the journal records why.</p>
+        <p>Slice 1 is built and has run against a real repository and a frozen benchmark corpus: tool-call parse-and-repair, hash-anchored edits that reject on drift, a post-edit syntax gate, and forced verification. <code class="mono">v0.1.0</code> on GitHub Releases, one-line installer.</p>
+        <div class="links">
+          <a href="https://github.com/leejianrong/kopicode#quickstart">Install →</a>
+          <a href="https://github.com/leejianrong/kopicode">GitHub ↗</a>
+        </div>
+      </div>
+
+      <div class="prod flag reveal">
+        <div class="ph"><h3>indah</h3><span class="status alpha">Alpha</span></div>
+        <p>A Python UI framework for ephemeral cloud notebooks — Colab, Runpod. Build an interactive UI from a single Python file and launch it straight from a notebook cell: Streamlit's zero-config, single-port startup, with the async performance of a real full-stack app, and no Node or npm anywhere.</p>
+        <p>Milestone 1 is shipped: the reactive core, streaming, custom components, the full input set, data-driven lists, file upload/download, and charting. <code class="mono">pip install indah</code>.</p>
+        <div class="links">
+          <a href="https://leejianrong.github.io/indah/">Read the docs →</a>
+          <a href="https://github.com/leejianrong/indah">GitHub ↗</a>
+        </div>
+      </div>
+
+      <div class="prod reveal">
+        <div class="pair">Canvas ⇄ YAML, one file</div>
+        <div class="ph"><h3>kampong-agents</h3><span class="status cook">Building</span></div>
+        <p>A dev-first agent-workflow builder where the visual canvas and the underlying YAML spec are the same thing, not two things kept in sync by convention. Design on the canvas or hand-write the YAML; either way you get one file, safe to commit, diff and review.</p>
+        <p>Early but real: a local execution engine with guardrails and human-in-the-loop, a local-first CLI with mock/record tools, Slack/Gmail connectors, and TypeScript export to a standalone project with zero further dependency on this tool.</p>
+        <div class="links">
+          <a href="https://github.com/leejianrong/kampong-agents">GitHub ↗</a>
+        </div>
       </div>
 
       <div class="prod reveal">
         <div class="pair">Built on satay</div>
-        <div class="ph"><h3>sotong</h3><span class="status plan">Planned</span></div>
-        <p>An assistant that runs on your own machine, always on, reachable from the places you already type. It acts on schedules and triggers rather than waiting to be opened. <b>Nothing is built yet and there is no timeline.</b></p>
-        <p>It stays a separate product from kopicode rather than a mode of it, because something that acts while nobody is watching needs a stricter safety model than something you're supervising. It is also where satay fits: a run that dies overnight has nobody to retype the prompt, and replay is built for that.</p>
-      </div>
-
-      <div class="prod wide reveal">
-        <div class="pair">Phase 0 · a benchmark, not the product</div>
-        <div class="ph"><h3>tingkat</h3><span class="status research">Research</span></div>
-        <p>A control plane for teams serving many LoRA adapters on GPUs they run themselves. The bet is that sending each request to a replica that already holds its adapter beats round-robin: fewer cold starts, a shorter tail, the same hardware.</p>
-        <p>Phase 0 tests that bet before any of the product is built. It is a discrete-event simulator, no vLLM and no GPUs, running the same seeded workload through both routing strategies. At 16 replicas, affinity routing cut cold starts by 89% against round-robin, clearing the 80% gate the PRD set. On an eight-replica fleet at 85% utilisation, p99 time-to-first-token improved by 47%. Affinity costs you some load imbalance, and the README shows that column rather than hiding it.</p>
-        <p><b>These numbers are simulated.</b> Warm-set staleness, prefix caching and real cold-start physics only turn up on hardware, so the next gate is a validation run against real vLLM. That harness is built and tested against a mock, and the GPU run has not happened yet.</p>
-        <div class="links">
-          <a href="https://github.com/leejianrong/tingkat">Read the benchmark ↗</a>
-        </div>
+        <div class="ph"><h3>cuttlefish-crew</h3><span class="status cook">Building</span></div>
+        <p>A fleet manager for teams of coding sub-agents, running across many projects at once, so you stop babysitting a single agent's context window by hand. Give a project's team a task in plain language; each agent hands its coding work to a pluggable backend — kopicode or headless Claude Code — rather than editing anything itself.</p>
+        <p>The core loop is a durable satay workflow from commit one, not a function wrapped in durability later: if the process dies partway through, restarting it resumes instead of starting over. Sandbox execution (E2B and container backends) and per-project secrets are built; the fleet layer is still being wired up.</p>
       </div>
 
       <div class="prod wide reveal">
@@ -594,14 +606,13 @@
         <h5>Shipping</h5>
         <a href="https://leejianrong.github.io/satay-runtime/">satay</a>
         <a href="https://leejianrong.github.io/sibei-flow/">sibei-flow</a>
-        <a href="#studio">satay studio</a>
-        <a href="https://pypi.org/project/satay/">satay on PyPI</a>
+        <a href="https://github.com/leejianrong/kopicode">kopicode</a>
+        <a href="https://leejianrong.github.io/indah/">indah</a>
       </div>
       <div class="foot-col">
         <h5>In the kitchen</h5>
-        <a href="#products">kopicode</a>
-        <a href="#products">tingkat</a>
-        <a href="#products">sotong</a>
+        <a href="#products">kampong-agents</a>
+        <a href="#products">cuttlefish-crew</a>
         <a href="#products">The model</a>
         <a href="https://github.com/leejianrong">GitHub ↗</a>
       </div>

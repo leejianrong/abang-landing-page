@@ -7,3 +7,6 @@ Thumbs.db
 
 # build output (Pages assembles this in CI)
 _site/
+
+.env.cloudflare
+.env

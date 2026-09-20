@@ -1,7 +1,8 @@
 # abang-landing-page
 
-The landing page for **Abang** and its first product, **Satay**: a transparent,
-durable runtime for AI workflows.
+The umbrella landing page for **Abang**: Jian's suite of durable, inspectable tools for
+working with AI (satay, sibei-flow, kopicode, kampong-agents, indah, and more — see
+`index.html`'s Products section for the current, honestly-labelled roster).
 
 The site is a single self-contained `index.html`. All CSS and JS are inline, there
 are no external fonts, scripts, or trackers, and it works in light and dark themes.

@@ -1,8 +1,8 @@
 # abang-landing-page
 
-The umbrella landing page for **Abang**: Jian's suite of durable, inspectable tools for
-working with AI (satay, sibei-flow, kopicode, kampong-agents, indah, and more — see
-`index.html`'s Products section for the current, honestly-labelled roster).
+The umbrella landing page for **Abang**: Jian's suite of AI agents and agentic tools
+(satay, sibei-flow, kopicode, indah, kampong-agents, cuttlefish-crew, and more — see
+`index.html`'s Products section for the current roster).
 
 The site is a single self-contained `index.html`. All CSS and JS are inline, there
 are no external fonts, scripts, or trackers, and it works in light and dark themes.

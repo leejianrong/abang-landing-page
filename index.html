@@ -6,30 +6,25 @@
      zoom out, so every `@media (max-width: …)` rule below never fires. The page
      shipped without a <head> at all until 2026-08-07. -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Abang · AI tools that show their work</title>
-<meta name="description" content="Abang builds durable, inspectable tools for working with AI: a durable execution runtime, an AI SRE for data pipelines, a terminal coding agent, and more. Self-hosted by default, Apache-2.0.">
+<title>Abang · AI agents and agentic tools</title>
+<meta name="description" content="Abang builds AI agents and agentic tools. We facilitate collaboration between humans and agents.">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f7f2ea" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#17110c" media="(prefers-color-scheme: dark)">
-<link rel="canonical" href="https://leejianrong.github.io/abang-landing-page/">
+<link rel="canonical" href="https://abangai.dev/">
 <!-- No og:image yet: a card referencing a file that does not exist renders worse
-     than a card with no image. Add one and reference it here. -->
+     than a card with no image. Add one once the per-product logos exist. -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="Abang · AI tools that show their work">
-<meta property="og:description" content="A durable execution runtime that records every step of a run, and the tools built alongside it. Open source, self-hosted, no account.">
-<meta property="og:url" content="https://leejianrong.github.io/abang-landing-page/">
+<meta property="og:title" content="Abang · AI agents and agentic tools">
+<meta property="og:description" content="Abang builds AI agents and agentic tools. We facilitate collaboration between humans and agents.">
+<meta property="og:url" content="https://abangai.dev/">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Abang · AI tools that show their work">
-<meta name="twitter:description" content="A durable execution runtime that records every step of a run, and the tools built alongside it. Open source, self-hosted, no account.">
+<meta name="twitter:title" content="Abang · AI agents and agentic tools">
+<meta name="twitter:description" content="Abang builds AI agents and agentic tools. We facilitate collaboration between humans and agents.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 46 34'%3E%3Cg fill='none' stroke='%23de5f1c' stroke-width='3' stroke-linejoin='round'%3E%3Cpolygon points='15,5 27,17 15,29 3,17'/%3E%3Cpolygon points='31,5 43,17 31,29 19,17'/%3E%3C/g%3E%3C/svg%3E">
 </head>
 <body>
 <style>
-  /* ============================================================
-     Abang · landing page
-     Light-first · warm "kueh" palette · solid colours · theme-aware
-     Signature: interlocked ketupat mark + threaded skewer timeline
-     ============================================================ */
   *, *::before, *::after { box-sizing:border-box; }
 
   :root{
@@ -39,38 +34,34 @@
 
     --bg:#f7f2ea; --bg2:#f1ebe0; --ink:#221913; --muted:#736354; --card:#fffdf9; --line:rgba(60,35,15,.12);
     --ember:#de5f1c; --chili:#c62d1c; --pandan:#2f9c5e; --palm:#8a4a1f;
-    --stick:rgba(60,35,15,.18); --bead:#8a4a1f;
-    --c-kw:#c62d1c; --c-dec:#de5f1c; --c-fn:#2f261d; --c-st:#2f9c5e; --c-cm:#a99a88; --c-pn:#8a4a1f;
     --shadow:0 30px 60px -38px rgba(120,50,10,.5);
     --shadow-sm:0 10px 26px -18px rgba(120,50,10,.45);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --bg:#17110c; --bg2:#1c150f; --ink:#f5ece0; --muted:#b09781; --card:#211913; --line:rgba(255,220,180,.11);
+      --ember:#f5843a; --chili:#f0512f; --pandan:#41c07d; --palm:#c9884f;
+      --shadow:0 30px 66px -36px rgba(0,0,0,.7); --shadow-sm:0 12px 30px -20px rgba(0,0,0,.7);
+    }
   }
   :root[data-theme="dark"]{
     color-scheme: dark;
     --bg:#17110c; --bg2:#1c150f; --ink:#f5ece0; --muted:#b09781; --card:#211913; --line:rgba(255,220,180,.11);
     --ember:#f5843a; --chili:#f0512f; --pandan:#41c07d; --palm:#c9884f;
-    --stick:rgba(255,220,180,.16); --bead:#c9884f;
-    --c-kw:#f0673f; --c-dec:#f5a54a; --c-fn:#f0e6d8; --c-st:#5ec98c; --c-cm:#8a7561; --c-pn:#e0a266;
     --shadow:0 30px 66px -36px rgba(0,0,0,.7); --shadow-sm:0 12px 30px -20px rgba(0,0,0,.7);
-  }
-  :root[data-theme="light"]{
-    --bg:#f7f2ea; --bg2:#f1ebe0; --ink:#221913; --muted:#736354; --card:#fffdf9; --line:rgba(60,35,15,.12);
-    --ember:#de5f1c; --chili:#c62d1c; --pandan:#2f9c5e; --palm:#8a4a1f;
-    --stick:rgba(60,35,15,.18); --bead:#8a4a1f;
-    --c-kw:#c62d1c; --c-dec:#de5f1c; --c-fn:#2f261d; --c-st:#2f9c5e; --c-cm:#a99a88; --c-pn:#8a4a1f;
-    --shadow:0 30px 60px -38px rgba(120,50,10,.5); --shadow-sm:0 10px 26px -18px rgba(120,50,10,.45);
   }
 
   html { scroll-behavior:smooth; }
   body { margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); -webkit-font-smoothing:antialiased; line-height:1.5; }
   a { color:inherit; }
-  .container { max-width:1140px; margin:0 auto; padding:0 40px; }
+  .container { max-width:1080px; margin:0 auto; padding:0 24px; }
   .mono { font-family:var(--mono); }
 
   /* ---------- nav ---------- */
   .nav { position:sticky; top:0; z-index:50; background:color-mix(in srgb,var(--bg) 84%,transparent); backdrop-filter:blur(12px); border-bottom:1px solid var(--line); }
   .nav .row { display:flex; align-items:center; gap:30px; height:64px; }
   .brand { display:flex; align-items:center; gap:11px; font-weight:700; letter-spacing:-.02em; font-size:18px; text-decoration:none; }
-  .brand small { font-weight:450; opacity:.55; letter-spacing:0; font-size:13px; }
   .ket { color:var(--ember); flex:none; }
   .navlinks { display:flex; gap:26px; margin-left:auto; align-items:center; }
   .navlinks a { text-decoration:none; font-size:14px; color:var(--muted); }
@@ -80,203 +71,82 @@
   .themebtn { font-family:var(--mono); font-size:11.5px; cursor:pointer; color:var(--muted); background:transparent; border:1px solid var(--line); border-radius:999px; padding:6px 11px; }
   .themebtn:hover { color:var(--ink); border-color:color-mix(in srgb,var(--ink) 34%,transparent); }
 
-  /* ---------- shared section rhythm ---------- */
-  .section { padding:84px 0; }
+  /* ---------- section rhythm ---------- */
+  .section { padding:76px 0; }
   .section.alt { background:var(--bg2); }
-  .lead { max-width:640px; }
-  .h2 { margin:0; font-size:clamp(30px,4.2vw,46px); font-weight:780; letter-spacing:-.035em; line-height:1.04; }
-  .deck { margin:18px 0 0; font-size:18px; color:var(--muted); max-width:56ch; }
-  .kicker { display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:11.5px; letter-spacing:.06em; color:var(--ember); text-transform:uppercase; margin-bottom:18px; }
-  .kicker .live { width:7px; height:7px; border-radius:50%; background:var(--pandan); }
+  .lead { max-width:560px; }
+  .h2 { margin:0; font-size:clamp(28px,3.8vw,40px); font-weight:780; letter-spacing:-.03em; line-height:1.08; }
+  .deck { margin:14px 0 0; font-size:17px; color:var(--muted); max-width:52ch; }
 
   /* ---------- hero ---------- */
-  .hero { padding:52px 0 72px; }
-  .hero-grid { display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:center; }
-  .tag { display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:11.5px; letter-spacing:.04em; color:var(--muted); padding:5px 11px; border-radius:999px; border:1px solid var(--line); margin-bottom:24px; }
-  .tag .live { width:7px; height:7px; border-radius:50%; background:var(--pandan); }
-  /* Element-agnostic: the Abang hero uses h1.head, the Satay section below reuses
-     the same treatment on an h2 so the page keeps exactly one h1. */
-  .head { margin:0; font-size:clamp(42px,6.2vw,76px); font-weight:800; line-height:1.0; letter-spacing:-.04em; }
-  h2.head { font-size:clamp(34px,4.8vw,58px); }
-  .head .em { color:var(--ember); }
-  .sub { margin:24px 0 0; font-size:18.5px; line-height:1.55; max-width:46ch; color:var(--muted); }
-  .sub b { color:var(--ink); font-weight:640; }
-  .cta { display:flex; align-items:center; gap:14px; margin-top:34px; flex-wrap:wrap; }
+  .hero { padding:64px 0 60px; }
+  .hero-solo { max-width:680px; }
+  .head { margin:0; font-size:clamp(38px,5.4vw,60px); font-weight:800; line-height:1.04; letter-spacing:-.035em; }
+  .sub { margin:20px 0 0; font-size:18px; line-height:1.55; max-width:52ch; color:var(--muted); }
+  .cta { display:flex; align-items:center; gap:14px; margin-top:30px; flex-wrap:wrap; }
   .btn { font:inherit; text-decoration:none; cursor:pointer; border:0; display:inline-flex; align-items:center; gap:9px; }
-  .btn-primary { background:var(--ember); color:#fff; padding:14px 22px; border-radius:12px; font-size:15px; font-weight:680; letter-spacing:-.01em; box-shadow:0 12px 26px -14px color-mix(in srgb,var(--ember) 80%,transparent); }
+  .btn-primary { background:var(--ember); color:#fff; padding:13px 20px; border-radius:12px; font-size:15px; font-weight:680; letter-spacing:-.01em; box-shadow:0 12px 26px -14px color-mix(in srgb,var(--ember) 80%,transparent); }
   .btn-primary:hover { background:color-mix(in srgb,var(--ember) 88%,#000); }
-  .btn-primary.mono { font-family:var(--mono); font-weight:600; }
-  .btn-ghost { color:var(--ink); padding:14px 14px; font-size:15px; font-weight:600; border:1.5px solid var(--line); border-radius:12px; }
+  .btn-ghost { color:var(--ink); padding:13px 14px; font-size:15px; font-weight:600; border:1.5px solid var(--line); border-radius:12px; }
   .btn-ghost:hover { border-color:var(--ember); color:var(--ember); }
-  .metrics { display:flex; gap:30px; margin-top:48px; flex-wrap:wrap; }
-  .metric b { display:block; font-size:16px; letter-spacing:-.01em; color:var(--ink); }
-  .metric b em { font-style:normal; color:var(--ember); }
-  .metric span { font-size:12.5px; color:var(--muted); }
-  .metric span code { font-family:var(--mono); }
 
-  /* ---------- code panel ---------- */
-  .panel { border-radius:15px; overflow:hidden; background:var(--card); border:1.5px solid var(--line); box-shadow:var(--shadow); }
-  .panel .bar { display:flex; align-items:center; gap:7px; padding:12px 15px; font-family:var(--mono); font-size:11.5px; color:var(--muted); border-bottom:1.5px solid var(--line); }
-  .panel .bar i { width:9px; height:9px; border-radius:50%; }
-  .panel .bar i:nth-child(1){ background:var(--chili);} .panel .bar i:nth-child(2){ background:var(--ember);} .panel .bar i:nth-child(3){ background:var(--pandan);}
-  .panel .bar .fn { margin-left:8px; opacity:.7; }
-  pre.code { margin:0; padding:17px 18px 21px; font-family:var(--mono); font-size:12.8px; line-height:1.62; overflow-x:auto; color:var(--c-fn); }
-  pre.code .kw{color:var(--c-kw);} pre.code .dec{color:var(--c-dec);} pre.code .fn{color:var(--c-fn); font-weight:600;}
-  pre.code .st{color:var(--c-st);} pre.code .cm{color:var(--c-cm); font-style:italic;} pre.code .pn{color:var(--c-pn);}
-  .langnote { margin:12px 2px 0; font-family:var(--mono); font-size:11px; color:var(--muted); }
-  .langnote b { color:var(--ember); font-weight:600; }
+  /* ---------- product icon marks ---------- */
+  .picon { width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; flex:none; background:var(--bg2); border:1px solid var(--line); }
+  .picon svg { width:24px; height:24px; }
+  .picon.c-ember { color:var(--ember); }
+  .picon.c-chili { color:var(--chili); }
+  .picon.c-pandan { color:var(--pandan); }
+  .picon.c-palm { color:var(--palm); }
 
-  /* ---------- skewer timeline ---------- */
-  .skewer { margin-top:16px; padding:17px 20px 15px; border-radius:15px; background:var(--card); border:1.5px solid var(--line); }
-  .skewer .lbl { font-family:var(--mono); font-size:11px; letter-spacing:.03em; color:var(--muted); margin-bottom:16px; }
-  .stick { position:relative; display:flex; align-items:center; justify-content:space-between; padding:0 4px; }
-  .stick::before { content:""; position:absolute; left:8px; right:8px; top:50%; height:2px; transform:translateY(-50%); background:var(--stick); border-radius:2px; }
-  .bead { position:relative; width:15px; height:15px; border-radius:50%; background:var(--bead); box-shadow:0 0 0 4px var(--card); }
-  .bead.crash { background:var(--chili); box-shadow:0 0 0 4px color-mix(in srgb,var(--chili) 20%,transparent); }
-  .bead.resume{ background:var(--pandan); box-shadow:0 0 0 4px color-mix(in srgb,var(--pandan) 22%,transparent); }
-  .beadrow { display:flex; align-items:center; justify-content:space-between; margin-top:12px; }
-  .beadrow span { font-family:var(--mono); font-size:10px; color:var(--muted); flex:1; text-align:center; }
-  .beadrow span:first-child{ text-align:left;} .beadrow span:last-child{ text-align:right;}
-  .beadrow .x { color:var(--chili); } .beadrow .r { color:var(--pandan); }
-
-  /* ---------- how it works ---------- */
-  .steps { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:52px; }
-  .step { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:26px 24px 28px; box-shadow:var(--shadow-sm); }
-  .step .no { font-family:var(--mono); font-size:12px; color:var(--ember); font-weight:600; }
-  .step h3 { margin:14px 0 8px; font-size:19px; font-weight:700; letter-spacing:-.02em; }
-  .step p { margin:0; font-size:14.5px; color:var(--muted); line-height:1.55; }
-  .step p code { font-family:var(--mono); font-size:.92em; color:var(--ink); background:var(--bg2); padding:1px 5px; border-radius:5px; }
-
-  /* ---------- comparison ---------- */
-  .cmp { margin-top:48px; border:1px solid var(--line); border-radius:16px; overflow:hidden; background:var(--card); box-shadow:var(--shadow-sm); }
-  .cmp table { width:100%; border-collapse:collapse; font-size:14.5px; }
-  .cmp th, .cmp td { text-align:left; padding:16px 22px; border-bottom:1px solid var(--line); vertical-align:top; }
-  .cmp tr:last-child td, .cmp tr:last-child th { border-bottom:0; }
-  .cmp thead th { font-size:12px; font-family:var(--mono); letter-spacing:.05em; text-transform:uppercase; color:var(--muted); font-weight:600; }
-  .cmp thead th.satay { color:var(--ember); }
-  .cmp tbody th { font-weight:600; color:var(--ink); width:24%; }
-  .cmp td.frame { color:var(--muted); width:38%; }
-  .cmp td.satay { color:var(--ink); width:38%; }
-  .cmp td.satay::before { content:"✓ "; color:var(--pandan); font-weight:700; }
-  .cmp .col-satay { background:color-mix(in srgb,var(--ember) 6%,var(--card)); }
-
-  /* ---------- studio ---------- */
-  .studio { margin-top:52px; border-radius:16px; overflow:hidden; border:1.5px solid var(--line); background:var(--card); box-shadow:var(--shadow); }
-  .studio .chrome { display:flex; align-items:center; gap:8px; padding:11px 15px; border-bottom:1px solid var(--line); font-family:var(--mono); font-size:11.5px; color:var(--muted); }
-  .studio .chrome i { width:9px; height:9px; border-radius:50%; }
-  .studio .chrome i:nth-child(1){background:var(--chili);}.studio .chrome i:nth-child(2){background:var(--ember);}.studio .chrome i:nth-child(3){background:var(--pandan);}
-  .studio .chrome .url { margin-left:10px; }
-  .studio .top-timeline { padding:16px 20px; border-bottom:1px solid var(--line); }
-  .studio .top-timeline .lbl { font-family:var(--mono); font-size:10.5px; color:var(--muted); margin-bottom:12px; letter-spacing:.03em; }
-  .studio-body { display:grid; grid-template-columns:1fr 1.25fr; }
-  .studio .tree { border-right:1px solid var(--line); padding:18px 20px; }
-  .studio .tree .th { font-family:var(--mono); font-size:10.5px; color:var(--muted); letter-spacing:.05em; margin-bottom:14px; }
-  .studio .node { display:flex; align-items:center; gap:10px; padding:7px 0; font-size:13.5px; }
-  .studio .node.child { padding-left:20px; }
-  .studio .node.sel { color:var(--ink); font-weight:600; }
-  .studio .node .dot { width:9px; height:9px; border-radius:50%; flex:none; }
-  .studio .node .dur { margin-left:auto; font-family:var(--mono); font-size:11px; color:var(--muted); }
-  .dot-ok{background:var(--pandan);} .dot-fail{background:var(--chili);} .dot-run{background:var(--ember);}
-  .studio .detail { padding:18px 22px; }
-  .studio .detail .dh { display:flex; align-items:center; gap:10px; margin-bottom:4px; }
-  .studio .detail .dh h4 { margin:0; font-size:16px; font-weight:700; letter-spacing:-.01em; }
-  .badge { font-family:var(--mono); font-size:10.5px; padding:3px 9px; border-radius:999px; font-weight:600; }
-  .badge.ok { color:var(--pandan); background:color-mix(in srgb,var(--pandan) 15%,transparent); }
-  .badge.fail { color:var(--chili); background:color-mix(in srgb,var(--chili) 14%,transparent); }
-  .studio .detail .meta { font-family:var(--mono); font-size:11.5px; color:var(--muted); margin:2px 0 16px; }
-  .attempt { border:1px solid var(--line); border-radius:10px; padding:12px 14px; margin-bottom:12px; }
-  .attempt .ah { display:flex; align-items:center; gap:8px; font-size:13px; font-weight:600; }
-  .attempt .ah .tag2 { margin-left:auto; font-family:var(--mono); font-size:10.5px; color:var(--muted); font-weight:400; }
-  .attempt pre { margin:10px 0 0; font-family:var(--mono); font-size:11px; line-height:1.5; color:var(--chili); background:var(--bg2); padding:9px 11px; border-radius:7px; overflow-x:auto; }
-  .usage { display:flex; gap:22px; font-family:var(--mono); font-size:11.5px; color:var(--muted); margin-top:4px; }
-  .usage b { color:var(--ink); font-weight:600; }
-
-  /* ---------- roadmap ---------- */
-  .road { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; margin-top:52px; }
-  .prod { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:26px 26px 24px; box-shadow:var(--shadow-sm); position:relative; display:flex; flex-direction:column; }
-  .prod.flag { border-color:color-mix(in srgb,var(--ember) 45%,var(--line)); }
-  .prod .ph { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
-  .prod h3 { margin:0; font-size:21px; font-weight:750; letter-spacing:-.025em; }
-  .status { margin-left:auto; font-family:var(--mono); font-size:10.5px; font-weight:600; padding:4px 10px; border-radius:999px; letter-spacing:.03em; }
-  .status.ship { color:var(--pandan); background:color-mix(in srgb,var(--pandan) 15%,transparent); }
-  .status.alpha { color:var(--ember); background:color-mix(in srgb,var(--ember) 15%,transparent); }
-  .status.cook { color:var(--ember); background:color-mix(in srgb,var(--ember) 15%,transparent); }
-  /* "Planned" is deliberately the quietest pill: nothing is built yet and the
-     badge should not borrow confidence from the two that ship. */
-  .status.plan { color:var(--muted); background:color-mix(in srgb,var(--muted) 13%,transparent); border:1px solid var(--line); }
-  .status.research { color:var(--palm); background:color-mix(in srgb,var(--palm) 16%,transparent); }
-  .prod p { margin:0 0 16px; font-size:14.5px; color:var(--muted); line-height:1.58; }
-  .prod p:last-of-type { margin-bottom:16px; }
-  .prod .link { margin-top:auto; font-size:14px; font-weight:600; color:var(--ember); text-decoration:none; }
-  .prod .link:hover { text-decoration:underline; }
-  .prod .links { margin-top:auto; display:flex; gap:18px; flex-wrap:wrap; }
-  .prod .links a { font-size:14px; font-weight:600; color:var(--ember); text-decoration:none; }
+  /* ---------- product grid ---------- */
+  .road { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:36px; }
+  .prod { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:24px 24px 22px; box-shadow:var(--shadow-sm); display:flex; flex-direction:column; }
+  .prod .ph { display:flex; align-items:center; gap:14px; margin-bottom:14px; }
+  .prod h3 { margin:0; font-size:19px; font-weight:750; letter-spacing:-.02em; }
+  .prod p { margin:0 0 16px; font-size:14.5px; color:var(--muted); line-height:1.55; }
+  .prod .links { margin-top:auto; display:flex; gap:16px; flex-wrap:wrap; }
+  .prod .links a { font-size:13.5px; font-weight:600; color:var(--ember); text-decoration:none; }
   .prod .links a:hover { text-decoration:underline; }
-  .prod .pair { font-family:var(--mono); font-size:11px; letter-spacing:.04em; text-transform:uppercase; color:var(--faint,var(--muted)); opacity:.8; margin-bottom:10px; }
-  /* Full-width tiles sit after the paired ones, so the two-column rows stay whole.
-     The model takes it: it's not software you install today, and dropping it into
-     the pair grid would misread it as a peer of the four that ship. Keep wide tiles
-     last in source order or the row above ends up with a hole. */
-  .prod.wide { grid-column:1 / -1; }
 
-  /* ---------- research strip (smaller than a product, honestly labelled) ---------- */
-  .research-strip { margin-top:20px; display:grid; grid-template-columns:1fr; gap:14px; }
-  .rs { display:flex; gap:16px; align-items:flex-start; padding:18px 22px; border:1px dashed var(--line); border-radius:14px; background:transparent; }
-  .rs h4 { margin:0 0 5px; font-size:15.5px; font-weight:700; letter-spacing:-.015em; }
-  .rs p { margin:0; font-size:14px; color:var(--muted); line-height:1.55; max-width:70ch; }
-  .rs .status { margin-left:auto; align-self:center; flex:none; }
-
-  /* ---------- umbrella hero (Abang-level, single column) ---------- */
-  .hero-solo { max-width:800px; }
-  .hero-solo .sub { max-width:62ch; }
-  /* Marks the boundary where the page stops being about Abang and starts being
-     about Satay specifically. */
-  /* Distinct from `.tag`, which is a bordered pill — this is a naked kicker rule. */
-  .prodhead { display:flex; align-items:center; gap:10px; margin-bottom:22px; }
-  .prodkick { display:inline-flex; align-items:center; gap:9px; font-family:var(--mono); font-size:11.5px; letter-spacing:.07em; text-transform:uppercase; color:var(--ember); }
-  .prodkick::before { content:""; width:22px; height:1.5px; background:var(--ember); flex:none; }
+  .brewing { margin-top:26px; font-size:14px; color:var(--muted); line-height:1.6; }
+  .brewing b { color:var(--ink); font-weight:600; }
 
   /* ---------- final cta ---------- */
-  .final { text-align:center; padding:88px 0; background:var(--bg2); }
-  .final h2 { margin:0 auto; font-size:clamp(32px,5vw,54px); font-weight:800; letter-spacing:-.04em; max-width:16ch; line-height:1.03; }
-  .final p { margin:18px auto 0; color:var(--muted); font-size:18px; max-width:44ch; }
+  .final { text-align:center; padding:76px 0; background:var(--bg2); }
+  .final h2 { margin:0 auto; font-size:clamp(28px,4.4vw,42px); font-weight:800; letter-spacing:-.035em; max-width:18ch; line-height:1.06; }
+  .final p { margin:14px auto 0; color:var(--muted); font-size:16px; max-width:42ch; }
   .final .cta { justify-content:center; }
 
   /* ---------- footer ---------- */
-  footer { border-top:1px solid var(--line); padding:56px 0 48px; }
-  .foot-grid { display:grid; grid-template-columns:1.5fr 1fr 1fr; gap:32px; }
-  .foot-brand .brand { margin-bottom:14px; }
-  .foot-brand p { margin:0; color:var(--muted); font-size:14px; max-width:34ch; line-height:1.6; }
-  .foot-brand .home { margin-top:14px; font-size:13px; color:var(--muted); }
+  footer { border-top:1px solid var(--line); padding:48px 0 40px; }
+  .foot-grid { display:grid; grid-template-columns:1.6fr 1fr; gap:32px; }
+  .foot-brand .brand { margin-bottom:12px; }
+  .foot-brand p { margin:0; color:var(--muted); font-size:14px; max-width:32ch; line-height:1.6; }
+  .foot-brand .home { margin-top:12px; font-size:13px; color:var(--muted); }
   .foot-col h5 { margin:0 0 14px; font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); font-weight:600; }
   .foot-col a { display:block; text-decoration:none; color:var(--ink); opacity:.78; font-size:14px; margin-bottom:10px; }
   .foot-col a:hover { opacity:1; color:var(--ember); }
-  .foot-bottom { margin-top:44px; padding-top:22px; border-top:1px solid var(--line); display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); flex-wrap:wrap; gap:10px; }
+  .foot-bottom { margin-top:36px; padding-top:20px; border-top:1px solid var(--line); display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); flex-wrap:wrap; gap:10px; }
 
   /* ---------- reveal ---------- */
   @media (prefers-reduced-motion: no-preference){
-    .reveal { opacity:0; transform:translateY(16px); transition:opacity .6s cubic-bezier(.2,.7,.2,1), transform .6s cubic-bezier(.2,.7,.2,1); }
+    .reveal { opacity:0; transform:translateY(14px); transition:opacity .55s cubic-bezier(.2,.7,.2,1), transform .55s cubic-bezier(.2,.7,.2,1); }
     .reveal.in { opacity:1; transform:none; }
-    .hero .reveal { transition-delay:.05s; }
   }
 
   /* ---------- responsive ---------- */
   @media (max-width:900px){
-    .hero-grid { grid-template-columns:1fr; gap:40px; }
-    .steps { grid-template-columns:1fr; }
+    .road { grid-template-columns:repeat(2,1fr); }
+  }
+  @media (max-width:600px){
     .road { grid-template-columns:1fr; }
-    .studio-body { grid-template-columns:1fr; }
-    .studio .tree { border-right:0; border-bottom:1px solid var(--line); }
-    .navlinks a:not(.gh):not(.tl) { display:none; }
+    .navlinks a:not(.gh) { display:none; }
     .foot-grid { grid-template-columns:1fr 1fr; }
     .foot-brand { grid-column:1 / -1; }
   }
-  @media (max-width:560px){
-    .container { padding:0 22px; }
-    .section { padding:64px 0; }
-    .cmp td.frame, .cmp td.satay, .cmp tbody th { display:block; width:auto; }
-    .cmp thead { display:none; }
-    .cmp td.frame::before { content:"Frameworks: "; font-weight:600; color:var(--ink); }
+  @media (max-width:520px){
+    .container { padding:0 18px; }
+    .section { padding:56px 0; }
   }
 </style>
 
@@ -296,31 +166,22 @@
     </a>
     <div class="navlinks">
       <a href="#products">Products</a>
-      <a href="#satay">satay</a>
-      <a href="#how">How it works</a>
-      <a href="#studio">Studio</a>
-      <a href="https://leejianrong.github.io/satay-runtime/" class="tl">Docs</a>
       <a href="https://github.com/leejianrong" class="gh">GitHub ↗</a>
-      <button class="themebtn tl" id="tt">◐</button>
+      <button class="themebtn" id="tt">◐</button>
     </div>
   </div>
 </div>
 
-<!-- ============ HERO (Abang umbrella) ============ -->
+<!-- ============ HERO ============ -->
 <a id="top"></a>
 <section class="hero">
   <div class="container">
     <div class="hero-solo">
-      <h1 class="head reveal">AI tools that <span class="em">show their work</span>.</h1>
-      <p class="sub reveal">Abang builds durable, inspectable tools for working with AI. It starts with a runtime that records every step of a run, and the same habit carries through the rest: whatever the tool did, it leaves a record you can replay or check instead of guessing at it. Everything runs on your own machine. <b>Four products ship today and three are still in the kitchen.</b></p>
+      <h1 class="head reveal">Building <span style="color:var(--ember)">AI agents</span> and agentic tools.</h1>
+      <p class="sub reveal">Abang builds AI agents and agentic tools. We facilitate collaboration between humans and agents.</p>
       <div class="cta reveal">
         <a href="#products" class="btn btn-primary">See what we build →</a>
-        <a href="https://leejianrong.github.io/satay-runtime/" class="btn btn-ghost">satay docs →</a>
-      </div>
-      <div class="metrics reveal">
-        <div class="metric"><b><em>4</em> shipping today</b><span>satay, sibei-flow, kopicode and indah, all Apache-2.0</span></div>
-        <div class="metric"><b><em>0</em> hosted services</b><span>self-host everything, no account</span></div>
-        <div class="metric"><b><em>1</em> rule</b><span>every tool leaves a record you can check</span></div>
+        <a href="https://github.com/leejianrong" class="btn btn-ghost">GitHub ↗</a>
       </div>
     </div>
   </div>
@@ -331,254 +192,135 @@
   <div class="container">
     <div class="lead reveal">
       <h2 class="h2">What we build</h2>
-      <p class="deck">Seven products, labelled honestly. Four you can install today. The other three are here because we intend to build them, not because any of them is ready.</p>
     </div>
-    <div class="road">
 
-      <div class="prod flag reveal">
-        <div class="ph"><h3>satay</h3><span class="status alpha">Alpha</span></div>
-        <p>A durable execution runtime for async Python. Write ordinary <code class="mono">async def</code> workflows, and every durable call lands in an append-only journal, so a crashed run replays from the top and reuses what already finished.</p>
-        <p>It also ships a local debugger: <b>fork a run from any point</b> and compare two runs call by call. On PyPI now at <code class="mono">0.1.0a3</code>, and the docs are honest about what's missing.</p>
+    <div class="road">
+      <div class="prod reveal">
+        <div class="ph">
+          <div class="picon c-ember" aria-hidden="true">
+            <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="4" y1="14" x2="24" y2="14"/>
+              <circle cx="9" cy="14" r="2.6" fill="currentColor" stroke="none"/>
+              <circle cx="14.5" cy="14" r="2.6" fill="currentColor" stroke="none"/>
+              <circle cx="20" cy="14" r="2.6" fill="currentColor" stroke="none"/>
+            </svg>
+          </div>
+          <h3>satay</h3>
+        </div>
+        <p>Durable execution for async Python, with a local debugger for forking and replaying runs.</p>
         <div class="links">
-          <a href="https://leejianrong.github.io/satay-runtime/">Read the docs →</a>
+          <a href="https://satay.abangai.dev/">Docs →</a>
           <a href="https://github.com/leejianrong/satay-runtime">GitHub ↗</a>
         </div>
       </div>
 
-      <div class="prod flag reveal">
-        <div class="ph"><h3>sibei-flow</h3><span class="status ship">Available</span></div>
-        <p>An AI SRE for data pipelines. When a dbt or Airflow job breaks, <code class="mono">sbflow</code> reads the failing model, drafts the smallest fix that works, verifies it in a throwaway sandbox, and opens a pull request with the diff, an explanation and its evidence.</p>
-        <p>Four deterministic gates decide whether you ever see a draft. <b>It holds no prod-write credentials</b>, so merging is the approval and <code class="mono">git revert</code> is the rollback.</p>
+      <div class="prod reveal">
+        <div class="ph">
+          <div class="picon c-chili" aria-hidden="true">
+            <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19 Q9 9 14 15 T22 8"/>
+              <path d="M22 8 L26 8 L26 12"/>
+            </svg>
+          </div>
+          <h3>sibei-flow</h3>
+        </div>
+        <p>Reads a broken dbt or Airflow job, drafts and verifies the fix in a sandbox, opens the PR.</p>
         <div class="links">
-          <a href="https://leejianrong.github.io/sibei-flow/">Read the docs →</a>
+          <a href="https://sibeiflow.abangai.dev/">Docs →</a>
           <a href="https://github.com/leejianrong/sibei-flow">GitHub ↗</a>
         </div>
       </div>
 
-      <div class="prod flag reveal">
-        <div class="ph"><h3>kopicode</h3><span class="status alpha">Alpha</span></div>
-        <p>A coding agent for the terminal, written in Go and shipped as a single binary. It keeps <b>its own append-only record</b> of a session, every message, tool call and permission decision, and snapshots the working tree to a git ref after each turn, so forking at the turn where things went wrong rewinds your files along with the conversation.</p>
-        <p>Slice 1 is built and has run against a real repository and a frozen benchmark corpus: tool-call parse-and-repair, hash-anchored edits that reject on drift, a post-edit syntax gate, and forced verification. <code class="mono">v0.1.0</code> on GitHub Releases, one-line installer.</p>
+      <div class="prod reveal">
+        <div class="ph">
+          <div class="picon c-pandan" aria-hidden="true">
+            <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 9 C6 7.3 7.3 6 9 6 H17 C18.7 6 20 7.3 20 9 V15 C20 18 17.5 20 14 20 C10.5 20 8 18 8 15 Z" />
+              <path d="M20 10 H22.5 C23.6 10 24.5 10.9 24.5 12 C24.5 13.1 23.6 14 22.5 14 H20"/>
+              <line x1="10.5" y1="4" x2="9.5" y2="6"/>
+              <line x1="14" y1="4" x2="13.3" y2="6"/>
+            </svg>
+          </div>
+          <h3>kopicode</h3>
+        </div>
+        <p>A terminal coding agent, single binary, with its own replayable session log.</p>
         <div class="links">
           <a href="https://github.com/leejianrong/kopicode#quickstart">Install →</a>
           <a href="https://github.com/leejianrong/kopicode">GitHub ↗</a>
         </div>
       </div>
 
-      <div class="prod flag reveal">
-        <div class="ph"><h3>indah</h3><span class="status alpha">Alpha</span></div>
-        <p>A Python UI framework for ephemeral cloud notebooks — Colab, Runpod. Build an interactive UI from a single Python file and launch it straight from a notebook cell: Streamlit's zero-config, single-port startup, with the async performance of a real full-stack app, and no Node or npm anywhere.</p>
-        <p>Milestone 1 is shipped: the reactive core, streaming, custom components, the full input set, data-driven lists, file upload/download, and charting. <code class="mono">pip install indah</code>.</p>
+      <div class="prod reveal">
+        <div class="ph">
+          <div class="picon" aria-hidden="true">
+            <svg viewBox="0 0 32 32">
+              <path d="M16 16C11.7 12.4 11.7 6 16 3.6C20.3 6 20.3 12.4 16 16Z" fill="#b5296b"/>
+              <path d="M16 16C20.3 19.6 20.3 26 16 28.4C11.7 26 11.7 19.6 16 16Z" fill="#b5296b"/>
+              <path d="M16 16C12.4 20.3 6 20.3 3.6 16C6 11.7 12.4 11.7 16 16Z" fill="#2e6d62"/>
+              <path d="M16 16C19.6 20.3 26 20.3 28.4 16C26 11.7 19.6 11.7 16 16Z" fill="#2e6d62"/>
+            </svg>
+          </div>
+          <h3>indah</h3>
+        </div>
+        <p>Build an interactive Python UI in one file, no Node, and launch it straight from a notebook.</p>
         <div class="links">
-          <a href="https://leejianrong.github.io/indah/">Read the docs →</a>
+          <a href="https://indah.abangai.dev/docs">Docs →</a>
           <a href="https://github.com/leejianrong/indah">GitHub ↗</a>
         </div>
       </div>
 
       <div class="prod reveal">
-        <div class="pair">Canvas ⇄ YAML, one file</div>
-        <div class="ph"><h3>kampong-agents</h3><span class="status cook">Building</span></div>
-        <p>A dev-first agent-workflow builder where the visual canvas and the underlying YAML spec are the same thing, not two things kept in sync by convention. Design on the canvas or hand-write the YAML; either way you get one file, safe to commit, diff and review.</p>
-        <p>Early but real: a local execution engine with guardrails and human-in-the-loop, a local-first CLI with mock/record tools, Slack/Gmail connectors, and TypeScript export to a standalone project with zero further dependency on this tool.</p>
+        <div class="ph">
+          <div class="picon c-palm" aria-hidden="true">
+            <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="14" cy="6" r="2.4"/>
+              <circle cx="6" cy="20" r="2.4"/>
+              <circle cx="22" cy="20" r="2.4"/>
+              <line x1="13" y1="8.3" x2="7.3" y2="17.9"/>
+              <line x1="15" y1="8.3" x2="20.7" y2="17.9"/>
+              <line x1="8.4" y1="20" x2="19.6" y2="20"/>
+            </svg>
+          </div>
+          <h3>kampong-agents</h3>
+        </div>
+        <p>Design an agent workflow on a canvas or in YAML, always the same file underneath.</p>
         <div class="links">
           <a href="https://github.com/leejianrong/kampong-agents">GitHub ↗</a>
         </div>
       </div>
 
       <div class="prod reveal">
-        <div class="pair">Built on satay</div>
-        <div class="ph"><h3>cuttlefish-crew</h3><span class="status cook">Building</span></div>
-        <p>A fleet manager for teams of coding sub-agents, running across many projects at once, so you stop babysitting a single agent's context window by hand. Give a project's team a task in plain language; each agent hands its coding work to a pluggable backend — kopicode or headless Claude Code — rather than editing anything itself.</p>
-        <p>The core loop is a durable satay workflow from commit one, not a function wrapped in durability later: if the process dies partway through, restarting it resumes instead of starting over. Sandbox execution (E2B and container backends) and per-project secrets are built; the fleet layer is still being wired up.</p>
-      </div>
-
-      <div class="prod wide reveal">
-        <div class="ph"><h3>Our own model</h3><span class="status plan">Planned</span></div>
-        <p>An open-weights model of our own, in the works. Aimed at agentic, tool-using work rather than chat, and small enough to download and run yourself.</p>
-        <p>The training data is the interesting part. Once kopicode exists, every session it records is a typed event log rather than scrollback, so we get real traces with the tool calls, retries and failures intact, and evaluation we can replay.</p>
-      </div>
-
-    </div>
-
-    <div class="research-strip reveal">
-      <div class="rs">
-        <div>
-          <h4>Synthetic data</h4>
-          <p>Tooling to generate synthetic datasets for training and evaluation, so a pipeline can be tested against realistic data before the real thing exists. Early research, and the least defined thing here.</p>
-        </div>
-        <span class="status research">Research</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ SATAY, UP CLOSE ============ -->
-<section class="section" id="satay">
-  <div class="container">
-    <div class="prodhead reveal"><span class="prodkick">satay, up close</span></div>
-    <div class="hero-grid">
-      <div>
-        <h2 class="head reveal">Ordinary async code, <span class="em">made durable</span>.</h2>
-        <p class="sub reveal">Write your workflow as plain async Python, and every step lands in an append-only journal, so a crashed run <b>picks up where it stopped</b> and you can see exactly what happened. No graph DSL, no hosted service.</p>
-        <div class="cta reveal">
-          <a href="https://pypi.org/project/satay/" class="btn btn-primary mono">pip install satay</a>
-          <a href="https://leejianrong.github.io/satay-runtime/" class="btn btn-ghost">Read the docs →</a>
-        </div>
-        <div class="metrics reveal">
-          <div class="metric"><b><em>0</em> work redone</b><span>replay reuses recorded results</span></div>
-          <div class="metric"><b><em>1</em> command</b><span><code>satay dev</code> runs it all, locally</span></div>
-          <div class="metric"><b><em>0</em> graph DSL</b><span>plain if / for / try</span></div>
-        </div>
-      </div>
-
-    <div class="reveal">
-      <div class="panel">
-        <div class="bar"><i></i><i></i><i></i><span class="fn">enrich.py</span></div>
-<pre class="code"><span class="kw">import</span> satay
-
-<span class="dec">@satay.task</span>(retries=<span class="pn">3</span>)
-<span class="kw">async def</span> <span class="fn">fetch</span>(url: str) -> dict:
-    <span class="cm"># your I/O, your provider SDK calls</span>
-    ...
-
-<span class="dec">@satay.workflow</span>
-<span class="kw">async def</span> <span class="fn">enrich</span>(urls: list[str]) -> Report:
-    pages = <span class="kw">await</span> satay.map(fetch, urls, concurrency=<span class="pn">8</span>)
-    draft = <span class="kw">await</span> summarize(pages)
-    ok    = <span class="kw">await</span> satay.wait_for_event(Approval, key=<span class="st">"review"</span>)
-    <span class="kw">return</span> <span class="kw">await</span> publish(draft) <span class="kw">if</span> ok <span class="kw">else</span> draft</pre>
-      </div>
-      <div class="skewer">
-        <div class="lbl">RUN a3f2 · killed after summarize, resumed on restart</div>
-        <div class="stick">
-          <span class="bead"></span><span class="bead"></span><span class="bead"></span>
-          <span class="bead crash"></span><span class="bead resume"></span>
-          <span class="bead"></span><span class="bead"></span>
-        </div>
-        <div class="beadrow">
-          <span>fetch×8</span><span>summarize</span><span class="x">✕ crash</span><span class="r">↻ resume</span><span>await approval</span><span>publish</span>
-        </div>
-      </div>
-    </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ HOW IT WORKS ============ -->
-<section class="section alt" id="how">
-  <div class="container">
-    <div class="lead reveal">
-      <h2 class="h2">How it works</h2>
-      <p class="deck">Three ideas, and that's the whole model. Ordinary code, an append-only journal, and replay that reuses what already finished.</p>
-    </div>
-    <div class="steps">
-      <div class="step reveal">
-        <div class="no">01</div>
-        <h3>Write ordinary code</h3>
-        <p>Mark an orchestration function <code>@workflow</code> and the functions it calls <code>@task</code>. Compose them with normal <code>if</code>, <code>for</code>, and <code>try</code>. Your data stays ordinary dicts, dataclasses, and Pydantic models, and your provider calls stay inside tasks.</p>
-      </div>
-      <div class="step reveal">
-        <div class="no">02</div>
-        <h3>Every step is recorded</h3>
-        <p>Each durable call, with its inputs, output, retries, timers, and model usage, lands in an append-only journal. The journal is the run's single source of truth, and it's plain JSON on SQLite. Nothing is hidden and nothing leaves your machine.</p>
-      </div>
-      <div class="step reveal">
-        <div class="no">03</div>
-        <h3>Crash, restart, resume</h3>
-        <p>Kill the process mid-run and start it again: satay replays the workflow, hands back the results it already recorded, and runs only the work that never finished. Completed tasks never run twice.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ WHY SATAY ============ -->
-<section class="section" id="why">
-  <div class="container">
-    <div class="lead reveal">
-      <h2 class="h2">Why not a framework?</h2>
-      <p class="deck">Most teams building durable AI workflows reach for an orchestration framework and end up rewriting their app around it. You trade your code for a graph, your exceptions for framework errors, and your debugger for a dashboard you log into. satay takes the other bet: keep your code, add durability underneath it.</p>
-    </div>
-    <div class="cmp reveal">
-      <table>
-        <thead>
-          <tr><th></th><th>The LangGraph / LangChain stack</th><th class="satay">satay</th></tr>
-        </thead>
-        <tbody>
-          <tr><th>Programming model</th><td class="frame">A graph of nodes and edges you declare up front</td><td class="satay col-satay">Plain async functions and normal control flow</td></tr>
-          <tr><th>Your data</th><td class="frame">Framework message and state classes</td><td class="satay col-satay">Ordinary dicts, dataclasses, Pydantic models</td></tr>
-          <tr><th>When it breaks</th><td class="frame">Wrapped errors, native stack traces buried</td><td class="satay col-satay">Native exceptions and full stack traces</td></tr>
-          <tr><th>Provider calls</th><td class="frame">Routed through framework abstractions</td><td class="satay col-satay">Your own SDK calls, written how you like</td></tr>
-          <tr><th>Inspecting a run</th><td class="frame">A hosted dashboard, often behind a paywall</td><td class="satay col-satay">Local Studio, one command, no account</td></tr>
-          <tr><th>If you leave</th><td class="frame">Coupled to one ecosystem</td><td class="satay col-satay">Plain code you can walk away with</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- ============ STUDIO ============ -->
-<section class="section alt" id="studio">
-  <div class="container">
-    <div class="lead reveal">
-      <h2 class="h2">See exactly what happened</h2>
-      <p class="deck"><code class="mono" style="color:var(--ember)">satay dev</code> starts everything locally: the worker, the store, the control API, and satay studio in your browser. Open a run to get the full timeline, every attempt behind each task, native stack traces on failures, and the token and cost breakdown per call.</p>
-    </div>
-
-    <div class="studio reveal">
-      <div class="chrome"><i></i><i></i><i></i><span class="url mono">localhost:8787 · satay studio</span></div>
-      <div class="top-timeline">
-        <div class="lbl">RUN a3f2 · enrich · resumed once</div>
-        <div class="stick">
-          <span class="bead"></span><span class="bead"></span><span class="bead"></span>
-          <span class="bead crash"></span><span class="bead resume"></span>
-          <span class="bead"></span><span class="bead"></span>
-        </div>
-        <div class="beadrow">
-          <span>fetch×8</span><span>summarize</span><span class="x">✕ crash</span><span class="r">↻ resume</span><span>await approval</span><span>publish</span>
-        </div>
-      </div>
-      <div class="studio-body">
-        <div class="tree">
-          <div class="th">EXECUTION TREE</div>
-          <div class="node"><span class="dot dot-ok"></span> enrich <span class="dur">4.8s</span></div>
-          <div class="node child"><span class="dot dot-ok"></span> map(fetch) ×8 <span class="dur">1.2s</span></div>
-          <div class="node child sel"><span class="dot dot-ok"></span> summarize <span class="dur">2.1s</span></div>
-          <div class="node child"><span class="dot dot-ok"></span> wait_for_event <span class="dur">0.4s</span></div>
-          <div class="node child"><span class="dot dot-run"></span> publish <span class="dur">running</span></div>
-        </div>
-        <div class="detail">
-          <div class="dh"><h4>summarize</h4><span class="badge ok">completed</span></div>
-          <div class="meta">logical task · 2 attempts · idempotency key 7c1a…e4</div>
-
-          <div class="attempt">
-            <div class="ah"><span class="badge fail">attempt 1</span> failed <span class="tag2">before crash</span></div>
-            <pre>TimeoutError: model call exceeded 30s
-  File "enrich.py", line 21, in summarize
-    resp = await client.messages.create(...)</pre>
+        <div class="ph">
+          <div class="picon c-ember" aria-hidden="true">
+            <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 12 C9 8 11.5 5 14 5 C16.5 5 19 8 19 12 C19 15.5 16.5 17 14 17 C11.5 17 9 15.5 9 12 Z"/>
+              <path d="M10 17 C10 19.5 9 21 8 23"/>
+              <path d="M13 17.5 C13 20 12.5 21.5 12 24"/>
+              <path d="M16 17.5 C16.3 20 17 21.5 17.5 24"/>
+              <path d="M19 17 C19.3 19.5 20.3 21 21.5 22.5"/>
+            </svg>
           </div>
-          <div class="attempt">
-            <div class="ah"><span class="badge ok">attempt 2</span> completed <span class="tag2">after resume</span></div>
-            <div class="usage">
-              <span>model <b>claude-sonnet</b></span>
-              <span><b>1,204</b> tokens</span>
-              <span><b>$0.021</b></span>
-            </div>
-          </div>
+          <h3>cuttlefish-crew</h3>
+        </div>
+        <p>A fleet manager for teams of coding agents, working across many projects at once.</p>
+        <div class="links">
+          <a href="https://github.com/leejianrong/cuttlefish-crew">GitHub ↗</a>
         </div>
       </div>
     </div>
+
+    <p class="brewing reveal">Also brewing: <b>an open-weights coding model</b> and <b>tooling for synthetic training data</b>. Both still early, watch this space.</p>
   </div>
 </section>
 
-<!-- ============ ROADMAP ============ -->
 <!-- ============ FINAL CTA ============ -->
 <section class="final">
   <div class="container">
-    <h2 class="reveal">Start with the one that ships.</h2>
-    <p class="reveal">Install satay, run <code class="mono">satay dev</code>, and watch a run survive a crash on your own machine. The rest of the kitchen is still cooking.</p>
+    <h2 class="reveal">Pick one and try it.</h2>
+    <p class="reveal">Every product has a quickstart. No signup, ever.</p>
     <div class="cta reveal">
-      <a href="https://pypi.org/project/satay/" class="btn btn-primary mono">pip install satay</a>
-      <a href="https://leejianrong.github.io/satay-runtime/" class="btn btn-ghost">Read the docs →</a>
+      <a href="#products" class="btn btn-primary">Browse the products ↑</a>
+      <a href="https://github.com/leejianrong" class="btn btn-ghost">GitHub ↗</a>
     </div>
   </div>
 </section>
@@ -599,26 +341,22 @@
           </svg>
           Abang
         </a>
-        <p>Durable, inspectable tools for working with AI.</p>
-        <div class="home">Abang is Malay for “older brother”.</div>
+        <p>Building AI agents and agentic tools.</p>
+        <div class="home">Abang is Malay for "older brother".</div>
       </div>
       <div class="foot-col">
-        <h5>Shipping</h5>
-        <a href="https://leejianrong.github.io/satay-runtime/">satay</a>
-        <a href="https://leejianrong.github.io/sibei-flow/">sibei-flow</a>
+        <h5>Products</h5>
+        <a href="https://satay.abangai.dev/">satay</a>
+        <a href="https://sibeiflow.abangai.dev/">sibei-flow</a>
         <a href="https://github.com/leejianrong/kopicode">kopicode</a>
-        <a href="https://leejianrong.github.io/indah/">indah</a>
-      </div>
-      <div class="foot-col">
-        <h5>In the kitchen</h5>
-        <a href="#products">kampong-agents</a>
-        <a href="#products">cuttlefish-crew</a>
-        <a href="#products">The model</a>
+        <a href="https://indah.abangai.dev/">indah</a>
+        <a href="https://github.com/leejianrong/kampong-agents">kampong-agents</a>
+        <a href="https://github.com/leejianrong/cuttlefish-crew">cuttlefish-crew</a>
         <a href="https://github.com/leejianrong">GitHub ↗</a>
       </div>
     </div>
     <div class="foot-bottom">
-      <span>© 2026 Abang</span>
+      <span>© 2026 Abang · Apache-2.0</span>
     </div>
   </div>
 </footer>

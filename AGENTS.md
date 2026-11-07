@@ -50,22 +50,45 @@ current docs site like every other product.
 ## Structure
 
 ```
-index.html                     the live site — the only file that gets published
+index.html                     the live site
+assets/                        published with the site: favicon.svg, favicon-32.png,
+                               apple-touch-icon.png, og.png (social card)
 .github/workflows/deploy.yml   builds and deploys to GitHub Pages on push to main
-design/                        design explorations/logo options, kept for reference, never deployed
+design/                        design explorations and logo options, never deployed
+design/brand/                  master logo SVGs and their generators (see its README)
+deploy/cloudflare/             Cloudflare Worker sources (fraktal.abangai.dev placeholder)
 ```
 
 ## Deploy
 
-Push to `main` → GitHub Actions publishes `index.html` to GitHub Pages. First-time repo
-setup: Settings → Pages → source = GitHub Actions.
+Push to `main` → GitHub Actions publishes `index.html`, `CNAME` and `assets/` to GitHub Pages.
+First-time repo setup: Settings → Pages → source = GitHub Actions.
+
+## Logos and backgrounds
+
+Each logo ships as variants, because a logo's background is a property of where it is used, not
+of the mark (`design/brand/README.md` lists the files):
+
+- **Favicon:** `assets/favicon.svg` is the ketupat on a transparent background and switches
+  colour for dark tabs, with `favicon-32.png` as the fallback. The orange tile is *not* used
+  here: the bare glyph is larger and clearer at 16px.
+- **`apple-touch-icon.png`:** opaque and full-bleed (iOS fills transparency with black and
+  rounds the corners itself).
+- **Product tiles on the page** are the rounded tile icons with a 1px ring from `--line`, so a
+  dark tile (satay) stays visible on the dark card.
+- **Nav and footer** use the inline ketupat in `currentColor`, the transparent mono form.
+- **`og.png`** is rendered from the master SVGs; regenerate it when a product is added.
+
+Do not bake a background or rounded corners into a logo that goes on someone else's surface
+(avatars, app icons): use the `-icon-square.svg` or `-mono.svg` variants.
 
 **Domain migration done (landed 2026-09-21):** this site and every shipped product's docs
 site now live under `abangai.dev` (Cloudflare-managed DNS) — `satay.abangai.dev`,
 `sibeiflow.abangai.dev`, `indah.abangai.dev`, this repo at the apex `abangai.dev` — no more
-`leejianrong.github.io/*` links in `index.html`. kopicode, kampong-agents and
-cuttlefish-crew don't have a live docs/marketing site yet, so their tiles link straight to
-GitHub. Full plan and what's still open lives in Jian's memory system
+`leejianrong.github.io/*` links in `index.html`. kopicode, cuttlefish-crew, vikaki and
+fraktal don't have a live docs/marketing site yet, so their tiles link straight to GitHub
+(`fraktal.abangai.dev` is only a placeholder page). kampong-agents and semula have docs sites
+and link to them. Full plan and what's still open lives in Jian's memory system
 (`abang-ai-domain-migration`); short version: any product needing both a docs site and a
 live demo on one subdomain (indah is the first case, satay is next) gets a Cloudflare
 Worker path-proxy in front, not a merged codebase or a DNS trick — DNS routes by hostname,

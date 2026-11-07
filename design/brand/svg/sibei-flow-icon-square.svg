@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="sibei-flow">
+<title>sibei-flow</title>
+<rect width="64" height="64" fill="#1f6f9b"/>
+<clipPath id="clip-sibei"><rect width="64" height="64"/></clipPath>
+<clipPath id="clip-sibei-head"><path d="M9 47C8 37 11 28 19 25.5C26 23.5 36 24 44 26C50 27.5 54 28.5 56 31C58.5 34 58.5 41 56.5 47Z"/></clipPath>
+<g transform="translate(-3.2 -4) scale(1.1)">
+<path d="M9 47C8 37 11 28 19 25.5C26 23.5 36 24 44 26C50 27.5 54 28.5 56 31C58.5 34 58.5 41 56.5 47Z" fill="#c98b52"/>
+<circle cx="57" cy="37" r="6" fill="#7a4a26" clip-path="url(#clip-sibei-head)"/>
+<ellipse cx="21.5" cy="27.2" rx="3.6" ry="4.4" fill="#8f5a30" transform="rotate(-12 21.5 27.2)"/>
+<ellipse cx="21.7" cy="27.8" rx="1.8" ry="2.4" fill="#5e3a1c" transform="rotate(-12 21.7 27.8)"/>
+<circle cx="39" cy="31.5" r="1.9" fill="#1f1612"/>
+</g>
+<g clip-path="url(#clip-sibei)"><path d="M-2 40C4 36.5 9 36.5 14 40S24 43.5 29 40S39 36.5 44 40S54 43.5 66 40V66H-2Z" fill="#9bd8ee"/>
+<path d="M-2 51C5 48 10 48 15 51S25 54 30 51S40 48 45 51S55 54 66 51V66H-2Z" fill="#5fb3d6"/></g>
+</svg>

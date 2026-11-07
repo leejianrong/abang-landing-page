@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="vikaki" style="color:#2b2f3a">
+<title>vikaki</title>
+<mask id="m-vikaki" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64">
+<rect width="64" height="64" fill="#000"/>
+<circle cx="32" cy="38" r="19" fill="#fff"/>
+<path d="M14 31C14 14 50 14 50 31Z" fill="#fff"/>
+<rect x="12" y="28.5" width="40" height="6.5" rx="3.2" fill="#000"/>
+<circle cx="32" cy="11.5" r="4" fill="#fff"/>
+<circle cx="25.5" cy="41" r="2.2" fill="#000"/>
+<circle cx="38.5" cy="41" r="2.2" fill="#000"/>
+<circle cx="32" cy="44" r="2" fill="#000"/>
+<path d="M26 48Q32 53.5 38 48" fill="none" stroke="#000" stroke-width="2.2" stroke-linecap="round"/>
+<circle cx="20.5" cy="46" r="2.6" fill="#fff"/>
+<circle cx="43.5" cy="46" r="2.6" fill="#fff"/>
+</mask>
+<rect width="64" height="64" fill="currentColor" mask="url(#m-vikaki)"/>
+</svg>

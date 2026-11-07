@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="abang-ai">
+<title>abang-ai</title>
+<rect width="64" height="64" rx="14" fill="#de5f1c"/>
+<g transform="translate(9 15)">
+<polygon points="15,5 27,17 15,29 3,17" fill="none" stroke="#fbf4e4" stroke-width="2.2" stroke-linejoin="round"/>
+<polygon points="31,5 43,17 31,29 19,17" fill="none" stroke="#fbf4e4" stroke-width="2.2" stroke-linejoin="round"/>
+<line x1="21" y1="15" x2="25" y2="11" stroke="#de5f1c" stroke-width="3.6"/>
+<line x1="21" y1="23" x2="25" y2="19" stroke="#de5f1c" stroke-width="3.6"/>
+<line x1="20.5" y1="15.5" x2="23" y2="13" stroke="#fbf4e4" stroke-width="2.2"/>
+<line x1="25.5" y1="18.5" x2="23" y2="21" stroke="#fbf4e4" stroke-width="2.2"/>
+</g>
+</svg>

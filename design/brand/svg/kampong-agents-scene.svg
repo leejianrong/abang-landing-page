@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 340" role="img" aria-label="kampong-agents scene: a pair of stilt houses over water">
+<title>kampong-agents</title>
+<rect width="460" height="340" fill="#2f7a55"/>
+<circle cx="230" cy="160" r="132" fill="#3a8a62"/>
+<g transform="translate(-20 0)">
+<polygon points="64,150 164,66 264,150" fill="#fbf4e4"/>
+<rect x="84" y="156" width="160" height="46" fill="#fbf4e4"/>
+<rect x="146" y="164" width="36" height="38" fill="#2f7a55"/>
+<rect x="100" y="168" width="28" height="20" fill="#2f7a55"/>
+<rect x="200" y="168" width="28" height="20" fill="#2f7a55"/>
+<rect x="56" y="207" width="216" height="14" rx="7" fill="#fbf4e4"/>
+<rect x="82" y="221" width="14" height="70" fill="#fbf4e4"/>
+<rect x="157" y="221" width="14" height="70" fill="#fbf4e4"/>
+<rect x="232" y="221" width="14" height="70" fill="#fbf4e4"/>
+</g>
+<g transform="translate(256 116) scale(.6)">
+<polygon points="64,150 164,66 264,150" fill="#fbf4e4"/>
+<rect x="84" y="156" width="160" height="46" fill="#fbf4e4"/>
+<rect x="146" y="164" width="36" height="38" fill="#2f7a55"/>
+<rect x="100" y="168" width="28" height="20" fill="#2f7a55"/>
+<rect x="200" y="168" width="28" height="20" fill="#2f7a55"/>
+<rect x="56" y="207" width="216" height="14" rx="7" fill="#fbf4e4"/>
+<rect x="82" y="221" width="14" height="70" fill="#fbf4e4"/>
+<rect x="157" y="221" width="14" height="70" fill="#fbf4e4"/>
+<rect x="232" y="221" width="14" height="70" fill="#fbf4e4"/>
+</g>
+<path d="M-10 262C30 252 60 252 100 262S170 272 210 262S280 252 320 262S390 272 470 262V340H-10Z" fill="#256a48"/>
+<path d="M30 292C60 284 90 284 120 292M200 304C230 296 260 296 290 304M330 290C355 284 385 284 410 290" fill="none" stroke="#3a8a62" stroke-width="5" stroke-linecap="round"/>
+</svg>

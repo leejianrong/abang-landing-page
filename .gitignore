@@ -13,3 +13,6 @@ _site/
 
 # local Codex run reports
 blog/.runs/
+
+# local-only print variants that use trademarked artwork (see design/merch/README.md)
+design/merch/private/

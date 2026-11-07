@@ -58,6 +58,31 @@ type tag (`engineering`, `tutorial`, `release`, `behind-the-build`) and the prod
 - If a claim matters and you cannot verify it, put it in your final message under
   "Could not verify", not in the post.
 
+## Read the writing skill before you draft
+
+Read `~/.claude/skills/natural-writing/SKILL.md` in full, including its "Jian's voice" section, and
+apply it. It is the authority on prose here; the summary below only restates it. Draft, then run its
+"Revision checklist" on your own text before you finish.
+
+## What a professional post looks like here
+
+The model is the engineering posts on the OpenAI developers blog, the Apache Airflow blog and the
+Claude developer articles: practical, specific, written by someone who built the thing.
+
+- **The opening paragraph does the work.** Within the first three sentences the reader knows the
+  problem, what this post shows, and why it matters to them. No scene-setting, no history.
+- **A clear spine.** Five to seven H2 sections, each making one point, ordered so each answers the
+  question the previous one raised. A reader skimming only the headings should follow the argument.
+- **Show the thing.** Real commands, a real request and response, a real file layout, copied from the
+  repository. A short code block usually beats a paragraph of description. Never pad with a code block
+  that adds nothing.
+- **State the trade-offs and limits** in their own section, written plainly. This is what makes the post
+  credible to engineers.
+- **Close with a practical next step** (how to try it, where the docs are), not a summary of what you
+  just said. One or two sentences and a link.
+- Titles say what the post is about in plain words. No clickbait, no questions that the post does not
+  answer, no title case.
+
 ## Voice
 
 Write as Jian, a thoughtful engineer writing for peers. British spelling ("learnt", "specialised").

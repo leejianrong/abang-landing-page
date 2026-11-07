@@ -83,8 +83,9 @@ BLOG_CSS = """
   .prose pre { overflow-x:auto; background:var(--bg2); border:1px solid var(--line); border-radius:12px; padding:16px 18px; font-size:14px; line-height:1.55; margin:0 0 1.3em; }
   .prose pre code { background:none; padding:0; font-size:inherit; }
   .prose blockquote { margin:1.4em 0; padding:0 0 0 1.2em; color:var(--muted); }
-  .prose table { display:block; overflow-x:auto; border-collapse:collapse; font-size:15px; margin:0 0 1.3em; }
-  .prose th, .prose td { text-align:left; padding:8px 14px; border-bottom:1px solid var(--line); }
+  .table-wrap { overflow-x:auto; margin:0 0 1.3em; }
+  .prose table { border-collapse:collapse; font-size:15px; width:100%; min-width:540px; }
+  .prose th, .prose td { text-align:left; vertical-align:top; padding:8px 14px; border-bottom:1px solid var(--line); }
   .prose th { font-weight:650; }
   .prose img { max-width:100%; height:auto; border-radius:10px; }
   .prose hr { border:0; border-top:1px solid var(--line); margin:2.4em 0; }
@@ -138,7 +139,9 @@ def parse(path):
 
 def render_md(md_text):
     md = markdown.Markdown(extensions=["fenced_code", "tables", "sane_lists", "toc"])
-    return md.convert(md_text)
+    body = md.convert(md_text)
+    # wide tables scroll sideways inside a wrapper instead of squeezing into narrow columns
+    return body.replace("<table>", '<div class="table-wrap"><table>').replace("</table>", "</table></div>")
 
 
 def page(*, title, description, path, content, style, nav, foot, script, og_type="website",

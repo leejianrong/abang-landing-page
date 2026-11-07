@@ -16,7 +16,7 @@ codex exec -m "${CODEX_MODEL:-gpt-6-sol}" --sandbox workspace-write --ephemeral 
   -o "blog/.runs/${name}.report.txt" \
   "Write the blog post described in ${brief}. First read blog/AGENTS.md and follow it exactly. \
 The product repositories are siblings of this one under ${parent}: read them, never modify them. \
-Write only the post file named in the brief, with status Draft. Finish with the three lists that blog/AGENTS.md asks for."
+Write only the files the brief names (the post, and images under assets/blog/ if the brief asks), with status Draft. Finish with the three lists that blog/AGENTS.md asks for."
 echo
 echo "report: blog/.runs/${name}.report.txt"
 echo "preview: uv run scripts/build_blog.py --drafts --out /tmp/blog-preview"

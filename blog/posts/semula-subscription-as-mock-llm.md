@@ -13,10 +13,13 @@ sources:
   - semula/CHANGELOG.md
   - semula/pyproject.toml
   - semula/docs/concepts.md
+  - semula/docs/assets/dashboard-pending.png
   - semula/docs/guide/answerer.md
   - semula/docs/agents/PLAYBOOK.md
   - semula/docs/tutorial/first-recording.md
+  - semula/docs/tutorial/dashboard.md
   - semula/docs/tutorial/near-misses.md
+  - semula/docs/tutorial/replay.md
   - semula/docs/explanation/how-matching-works.md
   - semula/docs/adr/0002-record-mode-park-and-answer-queue.md
   - semula/docs/adr/0003-tiered-matching-safe-by-default.md
@@ -54,32 +57,76 @@ curl http://127.0.0.1:8080/v1/chat/completions \
   -d '{"model": "gpt-4o", "messages": [{"role": "user", "content": "Name a fruit."}]}'
 ```
 
-In `record` mode, an unknown request becomes a parked call. semula keeps the HTTP request open and puts the call in the pending list. A coding agent can use the MCP tools `wait_for_pending`, `get_pending` and `answer_pending`; the CLI has the same path through `semula pending`, `semula show` and `semula answer`. For a quick manual check, the README uses:
+In `record` mode, an unknown request becomes a parked call. semula keeps the HTTP request open and puts the call in the pending list.
+
+![semula dashboard with the default project and Pending selected, two parked calls listed, and the refund question open with an answer entered](/assets/blog/semula-subscription-as-mock-llm/dashboard-pending.png)
+
+In this dashboard example, the refund question is selected and an answer is ready to send.
+
+In a second terminal, the recording tutorial checks that list:
 
 ```bash
 docker exec semula semula pending
-docker exec semula semula answer <id> --text "Mango"
 ```
 
-Here `<id>` is the id from the pending list. semula validates the answer, saves an entry and releases the waiting HTTP call. The app receives a normal chat completion with `Mango` as its message. An agent can stay in a loop waiting for the next call; the answer does not have to be typed by a person. The agent playbook tells it to read the whole request, including the system message and offered tools, before answering.
+```text
+01M5HGVZ3RCV5X9QWZKTDG9D7Z	pending	default	Name a fruit.
+```
+
+The row gives the pending id, project and last message. The tutorial answers that id with `Mango`:
+
+```bash
+docker exec semula semula answer 01M5HGVZ3RCV5X9QWZKTDG9D7Z --text "Mango"
+```
+
+```text
+answered 01M5HGVZ3RCV5X9QWZKTDG9D7Z -> entry 01M5HGZ4Y2JJHS5HCTKW5E12GT
+```
+
+semula validates the answer, saves an entry and releases the waiting HTTP call. The app receives a chat completion whose message is `Mango`. The tutorial sends the same request again:
+
+```bash
+curl -s http://127.0.0.1:8080/v1/chat/completions \
+  -H 'Content-Type: application/json' \
+  -d '{"model": "gpt-4o", "messages": [{"role": "user", "content": "Name a fruit."}]}'
+```
+
+It returns from the saved entry. The tutorial's call log shows both sides of the exchange:
+
+```bash
+docker exec semula semula log --limit 5
+```
+
+```text
+10:02:07.793  default      hit            exact 1.00  3ms  01M5HGZ4Y2JJHS5HCTKW5E12GT  "Name a fruit."
+10:02:07.703  default      recorded       -  104305ms  01M5HGVZ3RCV5X9QWZKTDG9D7Z  "Name a fruit."
+```
+
+The first call took as long as the answerer needed; the replay hit the exact tier in 3 ms. A coding agent can do the answering through the MCP tools `wait_for_pending`, `get_pending` and `answer_pending`, or through `semula pending`, `semula show` and `semula answer`. The agent playbook tells it to read the whole request, including the system message and offered tools, before answering.
 
 There is a real timeout to account for. The default `record_timeout` is 300 seconds; if nobody answers before then, the app gets `semula_record_timeout`, while the call remains pending and a later answer is still saved. An app's own HTTP timeout must allow for the agent's response time. Record mode is therefore useful for gathering answers during development, but I would not put it in a fast, unattended test run unless an answerer is already running.
 
 ## A fingerprint makes the recording reusable
 
-semula turns the incoming Chat Completions body into a canonical request with messages, tools and selected parameters. `canonical.py` sorts tools by name before fingerprinting. It calculates an exact fingerprint and a normalised one; the latter collapses whitespace and scrubs timestamps, UUIDs and absolute paths. Project settings can add scrub patterns or choose how many trailing messages count.
+The saved answer becomes reusable because semula fingerprints a canonical request, rather than the raw HTTP body. It sorts tools by name, then makes an exact key and a normalised key that ignores spacing, timestamps, UUIDs and absolute paths. A fresh timestamp can therefore find the same entry. A project can add scrub rules or limit matching to the last few messages.
 
-This matters when the prompt includes a fresh timestamp on every run. A raw string comparison would miss each time, while a normalised fingerprint can find the existing entry. By default, `model`, `temperature`, `top_p`, `max_tokens`, `stream`, `user` and `seed` do not affect the fingerprint. A project can add selected parameters back with `include_params` when they matter to its answer. The model name in the example request is consequently a client detail rather than a separate fixture key.
+The example's model name is not part of the key. By default, `model`, `temperature`, `top_p`, `max_tokens`, `stream`, `user` and `seed` are ignored. A project can count a parameter with `include_params` when it changes the right answer.
 
-Normalisation is a decision about which differences we consider harmless. If a path or timestamp actually changes the answer, scrubbing it can merge two requests that should stay separate. I would start with the defaults, inspect misses with `semula test-match`, and add a project rule only for noise we have seen. Stored requests have built-in credential redaction and can have project-specific redaction patterns, but recorded answers are not redacted. An agent should not put secrets in an answer.
+Scrubbing can merge requests that should remain separate, so I would inspect misses with `semula test-match` before adding a rule. Stored requests have built-in credential redaction and can have project-specific patterns, but recorded answers are not redacted. An agent should not put secrets in an answer.
 
 ## Near matches wait for review
 
-The lookup goes through exact, normalised and approved alias matches before trying word overlap. The optional embedding tier can find paraphrases. Exact and normalised hits can be served directly, and an alias means a person has already approved that link. For the word tier, the default serve threshold is `1`, while a candidate above the review threshold can be shown for a decision. Embedding matches go to review by default unless the project explicitly opts in to serving them.
+A replay should fail when semula is unsure. The tiers make that choice visible:
 
-That conservative default costs some hit rate. It also avoids a particularly awkward test failure: a plausible answer returned for the wrong prompt. A near match still counts as a miss. In record mode the new call parks, and in replay mode it fails; a candidate above the review threshold appears separately in the review queue. The reviewer sees the two requests and the stored answer, then approves an alias or rejects the pairing. Approval affects later calls, so the already parked call still needs an answer.
+| Tier | What it matches | Default action |
+|---|---|---|
+| Exact | Same messages and tools | Serve |
+| Normalised | Differences removed by normalisation | Serve |
+| Alias | A pairing a person approved | Serve |
+| Words | Word overlap, with the same roles, tools and included parameters | Serve at score `1`; send candidates from `0.6` to review |
+| Meaning | Paraphrases found by optional embeddings | Disabled unless installed and enabled; send candidates from `0.75` to review, never serve without a project opt-in |
 
-The word tier also checks the request's shape before it serves a close match: roles in order, offered tools and any parameters the project chose to include. An answer containing a tool call is no good if the new request did not offer that tool. This is why I would keep the serve threshold strict until the review queue shows which variations are genuinely safe for a particular app.
+That strict word threshold costs some hit rate, but it avoids a plausible answer for the wrong prompt. A near match still counts as a miss: it parks in record mode or fails in replay mode, while the candidate goes to the review queue. A reviewer compares both requests and the stored answer, then approves an alias or rejects the pairing. Approval changes later calls; a call already parked still needs an answer. I would keep the serve threshold strict until those reviews show which variations are safe for the app.
 
 ## One entry can answer streamed and ordinary calls
 

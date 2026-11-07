@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 340" role="img" aria-label="sibei-flow scene: a capybara swimming low in the water above a pipeline">
+<title>sibei-flow</title>
+<defs>
+<clipPath id="sc-head"><path d="M9 47C8 37 11 28 19 25.5C26 23.5 36 24 44 26C50 27.5 54 28.5 56 31C58.5 34 58.5 41 56.5 47Z"/></clipPath>
+</defs>
+<rect width="460" height="340" fill="#1f6f9b"/>
+<circle cx="290" cy="160" r="128" fill="#2a82ae"/>
+<g transform="translate(-34 -100) scale(7.2)">
+<path d="M9 47C8 37 11 28 19 25.5C26 23.5 36 24 44 26C50 27.5 54 28.5 56 31C58.5 34 58.5 41 56.5 47Z" fill="#c98b52"/>
+<circle cx="57" cy="37" r="6" fill="#7a4a26" clip-path="url(#sc-head)"/>
+<ellipse cx="21.5" cy="27.2" rx="3.6" ry="4.4" fill="#8f5a30" transform="rotate(-12 21.5 27.2)"/>
+<ellipse cx="21.7" cy="27.8" rx="1.8" ry="2.4" fill="#5e3a1c" transform="rotate(-12 21.7 27.8)"/>
+<circle cx="39" cy="31.5" r="1.9" fill="#1f1612"/>
+</g>
+<path d="M-10 190C40 168 90 168 140 190S240 212 290 190S390 168 440 190S500 212 520 190V340H-10Z" fill="#9bd8ee"/>
+<path d="M-10 246C40 228 90 228 140 246S240 264 290 246S390 228 440 246S500 264 520 246V340H-10Z" fill="#3f98c2"/>
+<rect x="0" y="288" width="460" height="52" fill="#17597e"/>
+<line x1="50" y1="314" x2="410" y2="314" stroke="#fbf4e4" stroke-width="6" stroke-linecap="round"/>
+<circle cx="50" cy="314" r="11" fill="#17597e" stroke="#fbf4e4" stroke-width="5"/>
+<circle cx="150" cy="314" r="11" fill="#17597e" stroke="#fbf4e4" stroke-width="5"/>
+<circle cx="250" cy="314" r="11" fill="#17597e" stroke="#fbf4e4" stroke-width="5"/>
+<circle cx="350" cy="314" r="11" fill="#f2b84b" stroke="#fbf4e4" stroke-width="5"/>
+<circle cx="410" cy="314" r="11" fill="#17597e" stroke="#fbf4e4" stroke-width="5"/>
+</svg>

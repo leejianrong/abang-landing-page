@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 340" role="img" aria-label="satay scene: three skewers of satay, with ghosted pieces for steps not yet replayed, and a bowl of peanut sauce">
+<title>satay</title>
+<rect width="460" height="340" fill="#3a3036"/>
+<circle cx="250" cy="150" r="130" fill="#483d44"/>
+<g transform="rotate(-28 240 150)">
+<line x1="40" y1="80" x2="440" y2="80" stroke="#fbf4e4" stroke-width="7" stroke-linecap="round"/>
+<rect x="90" y="40" width="52" height="80" rx="20" fill="#f0a93c"/><rect x="150" y="40" width="52" height="80" rx="20" fill="#d98a24"/><rect x="210" y="40" width="52" height="80" rx="20" fill="#f0a93c"/><rect x="270" y="40" width="52" height="80" rx="20" fill="#d98a24"/>
+<line x1="40" y1="160" x2="440" y2="160" stroke="#fbf4e4" stroke-width="7" stroke-linecap="round"/>
+<rect x="90" y="120" width="52" height="80" rx="20" fill="#d98a24"/><rect x="150" y="120" width="52" height="80" rx="20" fill="#f0a93c"/><rect x="210" y="120" width="52" height="80" rx="20" fill="#d98a24"/><rect x="270" y="120" width="52" height="80" rx="20" fill="#f0a93c" opacity=".28"/>
+<line x1="40" y1="240" x2="440" y2="240" stroke="#fbf4e4" stroke-width="7" stroke-linecap="round"/>
+<rect x="90" y="200" width="52" height="80" rx="20" fill="#f0a93c"/><rect x="150" y="200" width="52" height="80" rx="20" fill="#d98a24"/><rect x="210" y="200" width="52" height="80" rx="20" fill="#f0a93c" opacity=".28"/><rect x="270" y="200" width="52" height="80" rx="20" fill="#d98a24" opacity=".28"/>
+</g>
+<path d="M36 276H128C128 306 108 322 82 322C56 322 36 306 36 276Z" fill="#fbf4e4"/>
+<ellipse cx="82" cy="276" rx="46" ry="9" fill="#d98a24"/>
+</svg>

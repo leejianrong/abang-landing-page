@@ -12,16 +12,21 @@
 <meta name="theme-color" content="#f7f2ea" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#17110c" media="(prefers-color-scheme: dark)">
 <link rel="canonical" href="https://abangai.dev/">
-<!-- No og:image yet: a card referencing a file that does not exist renders worse
-     than a card with no image. Add one once the per-product logos exist. -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Abang · AI agents and agentic tools">
 <meta property="og:description" content="Abang builds AI agents and agentic tools. We facilitate collaboration between humans and agents.">
 <meta property="og:url" content="https://abangai.dev/">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://abangai.dev/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Abang: building AI agents and agentic tools, with the logos of nine products in a row.">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Abang · AI agents and agentic tools">
 <meta name="twitter:description" content="Abang builds AI agents and agentic tools. We facilitate collaboration between humans and agents.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 46 34'%3E%3Cg fill='none' stroke='%23de5f1c' stroke-width='3' stroke-linejoin='round'%3E%3Cpolygon points='15,5 27,17 15,29 3,17'/%3E%3Cpolygon points='31,5 43,17 31,29 19,17'/%3E%3C/g%3E%3C/svg%3E">
+<meta name="twitter:image" content="https://abangai.dev/assets/og.png">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 </head>
 <body>
 <style>
@@ -91,12 +96,15 @@
   .btn-ghost:hover { border-color:var(--ember); color:var(--ember); }
 
   /* ---------- product icon marks ---------- */
-  .picon { width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; flex:none; background:var(--bg2); border:1px solid var(--line); }
-  .picon svg { width:24px; height:24px; }
+  .picon { width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center; flex:none; background:var(--bg2); border:1px solid var(--line); }
+  .picon svg { width:26px; height:26px; }
   .picon.c-ember { color:var(--ember); }
   .picon.c-chili { color:var(--chili); }
   .picon.c-pandan { color:var(--pandan); }
   .picon.c-palm { color:var(--palm); }
+  .picon.c-ink { color:var(--ink); }
+  .picon.tile { width:48px; height:48px; border:0; background:none; border-radius:0; }
+  .picon.tile svg { width:48px; height:48px; border-radius:10.5px; box-shadow:0 0 0 1px var(--line); }
 
   /* ---------- product grid ---------- */
   .road { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:36px; }
@@ -197,13 +205,16 @@
     <div class="road">
       <div class="prod reveal">
         <div class="ph">
-          <div class="picon c-ember" aria-hidden="true">
-            <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="4" y1="14" x2="24" y2="14"/>
-              <circle cx="9" cy="14" r="2.6" fill="currentColor" stroke="none"/>
-              <circle cx="14.5" cy="14" r="2.6" fill="currentColor" stroke="none"/>
-              <circle cx="20" cy="14" r="2.6" fill="currentColor" stroke="none"/>
-            </svg>
+          <div class="picon tile" aria-hidden="true">
+<svg viewBox="0 0 64 64" aria-hidden="true">
+<rect width="64" height="64" rx="14" fill="#3a3036"/>
+<g transform="rotate(-45 32 32)">
+<line x1="6" y1="32" x2="58" y2="32" stroke="#fbf4e4" stroke-width="2.4" stroke-linecap="round"/>
+<rect x="12.5" y="22.5" width="12" height="19" rx="5" fill="#f0a93c"/>
+<rect x="26" y="22.5" width="12" height="19" rx="5" fill="#d98a24"/>
+<rect x="39.5" y="22.5" width="12" height="19" rx="5" fill="#f0a93c"/>
+</g>
+</svg>
           </div>
           <h3>satay</h3>
         </div>
@@ -213,14 +224,23 @@
           <a href="https://github.com/leejianrong/satay-runtime">GitHub ↗</a>
         </div>
       </div>
-
       <div class="prod reveal">
         <div class="ph">
-          <div class="picon c-chili" aria-hidden="true">
-            <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 19 Q9 9 14 15 T22 8"/>
-              <path d="M22 8 L26 8 L26 12"/>
-            </svg>
+          <div class="picon tile" aria-hidden="true">
+<svg viewBox="0 0 64 64" aria-hidden="true">
+<rect width="64" height="64" rx="14" fill="#1f6f9b"/>
+<clipPath id="clip-sibei"><rect width="64" height="64" rx="14"/></clipPath>
+<clipPath id="clip-sibei-head"><path d="M9 47C8 37 11 28 19 25.5C26 23.5 36 24 44 26C50 27.5 54 28.5 56 31C58.5 34 58.5 41 56.5 47Z"/></clipPath>
+<g transform="translate(-3.2 -4) scale(1.1)">
+<path d="M9 47C8 37 11 28 19 25.5C26 23.5 36 24 44 26C50 27.5 54 28.5 56 31C58.5 34 58.5 41 56.5 47Z" fill="#c98b52"/>
+<circle cx="57" cy="37" r="6" fill="#7a4a26" clip-path="url(#clip-sibei-head)"/>
+<ellipse cx="21.5" cy="27.2" rx="3.6" ry="4.4" fill="#8f5a30" transform="rotate(-12 21.5 27.2)"/>
+<ellipse cx="21.7" cy="27.8" rx="1.8" ry="2.4" fill="#5e3a1c" transform="rotate(-12 21.7 27.8)"/>
+<circle cx="39" cy="31.5" r="1.9" fill="#1f1612"/>
+</g>
+<g clip-path="url(#clip-sibei)"><path d="M-2 40C4 36.5 9 36.5 14 40S24 43.5 29 40S39 36.5 44 40S54 43.5 66 40V66H-2Z" fill="#9bd8ee"/>
+<path d="M-2 51C5 48 10 48 15 51S25 54 30 51S40 48 45 51S55 54 66 51V66H-2Z" fill="#5fb3d6"/></g>
+</svg>
           </div>
           <h3>sibei-flow</h3>
         </div>
@@ -230,16 +250,23 @@
           <a href="https://github.com/leejianrong/sibei-flow">GitHub ↗</a>
         </div>
       </div>
-
       <div class="prod reveal">
         <div class="ph">
-          <div class="picon c-pandan" aria-hidden="true">
-            <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M6 9 C6 7.3 7.3 6 9 6 H17 C18.7 6 20 7.3 20 9 V15 C20 18 17.5 20 14 20 C10.5 20 8 18 8 15 Z" />
-              <path d="M20 10 H22.5 C23.6 10 24.5 10.9 24.5 12 C24.5 13.1 23.6 14 22.5 14 H20"/>
-              <line x1="10.5" y1="4" x2="9.5" y2="6"/>
-              <line x1="14" y1="4" x2="13.3" y2="6"/>
-            </svg>
+          <div class="picon tile" aria-hidden="true">
+<svg viewBox="0 0 64 64" aria-hidden="true">
+<rect width="64" height="64" rx="14" fill="#5a3622"/>
+<g transform="rotate(35 17 28)">
+<circle cx="17" cy="10" r="2.2" fill="#fbf4e4"/>
+<rect x="9" y="12" width="16" height="4" rx="2" fill="#fbf4e4"/>
+<path d="M10 16H24L22.5 39H11.5Z" fill="#fbf4e4"/>
+<path d="M9.5 20C4 23 4.5 32 10.5 34.5" fill="none" stroke="#fbf4e4" stroke-width="2.6" stroke-linecap="round"/>
+<path d="M23 29L30 26.5" fill="none" stroke="#fbf4e4" stroke-width="3.4" stroke-linecap="round"/>
+</g>
+<path d="M29 34.6Q39 36.2 43.8 45" fill="none" stroke="#c98f5c" stroke-width="2.8" stroke-linecap="round"/>
+<path d="M35 45H53C53 53 49.5 57.5 44 57.5C38.5 57.5 35 53 35 45Z" fill="#fbf4e4"/>
+<path d="M51.5 47.4H54.4C58.8 47.4 58.8 53.4 54.4 53.4H49.8" fill="none" stroke="#fbf4e4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="35" y="45" width="18" height="3.2" fill="#c98f5c"/>
+</svg>
           </div>
           <h3>kopicode</h3>
         </div>
@@ -249,7 +276,6 @@
           <a href="https://github.com/leejianrong/kopicode">GitHub ↗</a>
         </div>
       </div>
-
       <div class="prod reveal">
         <div class="ph">
           <div class="picon" aria-hidden="true">
@@ -264,52 +290,127 @@
         </div>
         <p>Build an interactive Python UI in one file, no Node, and launch it straight from a notebook.</p>
         <div class="links">
-          <a href="https://indah-demos.fly.dev/">Docs →</a>
+          <a href="https://indah.abangai.dev/">Docs →</a>
           <a href="https://github.com/leejianrong/indah">GitHub ↗</a>
         </div>
       </div>
-
       <div class="prod reveal">
         <div class="ph">
-          <div class="picon c-palm" aria-hidden="true">
-            <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="14" cy="6" r="2.4"/>
-              <circle cx="6" cy="20" r="2.4"/>
-              <circle cx="22" cy="20" r="2.4"/>
-              <line x1="13" y1="8.3" x2="7.3" y2="17.9"/>
-              <line x1="15" y1="8.3" x2="20.7" y2="17.9"/>
-              <line x1="8.4" y1="20" x2="19.6" y2="20"/>
+          <div class="picon c-ink" aria-hidden="true">
+            <svg viewBox="0 0 64 64">
+              <path d="M32 11A21 21 0 1 1 11 32" fill="none" stroke="currentColor" stroke-width="6.5" stroke-linecap="round"/>
+              <path d="M11 22L4 33H18z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <circle cx="32" cy="11" r="8.5" fill="#C8271F"/>
             </svg>
+          </div>
+          <h3>semula</h3>
+        </div>
+        <p>A mock LLM server that lets the AI subscription you already pay for answer your app's calls, then replays them for free.</p>
+        <div class="links">
+          <a href="https://semula.abangai.dev/docs/">Docs →</a>
+          <a href="https://github.com/leejianrong/semula">GitHub ↗</a>
+        </div>
+      </div>
+      <div class="prod reveal">
+        <div class="ph">
+          <div class="picon tile" aria-hidden="true">
+<svg viewBox="0 0 64 64" aria-hidden="true">
+<rect width="64" height="64" rx="14" fill="#2f7a55"/>
+<g transform="translate(0 -2)">
+<polygon points="5,31 20,17 35,31" fill="#fbf4e4"/>
+<rect x="9" y="32.5" width="22" height="7" fill="#fbf4e4"/>
+<rect x="17.5" y="34" width="5" height="5.5" fill="#2f7a55"/>
+<rect x="5" y="40.5" width="30" height="3" rx="1.5" fill="#fbf4e4"/>
+<rect x="9" y="43.5" width="3" height="9" fill="#fbf4e4"/>
+<rect x="18.5" y="43.5" width="3" height="9" fill="#fbf4e4"/>
+<rect x="28" y="43.5" width="3" height="9" fill="#fbf4e4"/>
+<polygon points="37,34 46.5,25 56,34" fill="#fbf4e4"/>
+<rect x="40" y="35" width="13" height="5.5" fill="#fbf4e4"/>
+<rect x="44.5" y="36" width="4" height="4.5" fill="#2f7a55"/>
+<rect x="37" y="41.5" width="19" height="2.5" rx="1.25" fill="#fbf4e4"/>
+<rect x="40.5" y="44" width="2.6" height="8" fill="#fbf4e4"/>
+<rect x="51" y="44" width="2.6" height="8" fill="#fbf4e4"/>
+<rect x="5" y="55" width="51" height="2.4" rx="1.2" fill="#fbf4e4" opacity=".5"/>
+</g>
+</svg>
           </div>
           <h3>kampong-agents</h3>
         </div>
         <p>Design an agent workflow on a canvas or in YAML, always the same file underneath.</p>
         <div class="links">
+          <a href="https://kampong.abangai.dev/">Docs →</a>
           <a href="https://github.com/leejianrong/kampong-agents">GitHub ↗</a>
         </div>
       </div>
-
       <div class="prod reveal">
         <div class="ph">
-          <div class="picon c-ember" aria-hidden="true">
-            <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M9 12 C9 8 11.5 5 14 5 C16.5 5 19 8 19 12 C19 15.5 16.5 17 14 17 C11.5 17 9 15.5 9 12 Z"/>
-              <path d="M10 17 C10 19.5 9 21 8 23"/>
-              <path d="M13 17.5 C13 20 12.5 21.5 12 24"/>
-              <path d="M16 17.5 C16.3 20 17 21.5 17.5 24"/>
-              <path d="M19 17 C19.3 19.5 20.3 21 21.5 22.5"/>
-            </svg>
+          <div class="picon tile" aria-hidden="true">
+<svg viewBox="0 0 64 64" aria-hidden="true">
+<rect width="64" height="64" rx="14" fill="#6b4fa0"/>
+<g fill="#e3d6bd" stroke="#e3d6bd" stroke-width="1.6" stroke-linejoin="round"><polygon points="24.5,15 14,21.5 23.5,27"/><polygon points="39.5,15 50,21.5 40.5,27"/></g>
+<path d="M32 6C39 11 43.5 22 42 33.5C41.4 38 37.5 40.5 32 40.5C26.5 40.5 22.6 38 22 33.5C20.5 22 25 11 32 6Z" fill="#fbf4e4"/>
+<path d="M24.6 33A3 3 0 0 1 30.6 33" fill="none" stroke="#6b4fa0" stroke-width="1.9" stroke-linecap="round"/>
+<path d="M33.4 33A3 3 0 0 1 39.4 33" fill="none" stroke="#6b4fa0" stroke-width="1.9" stroke-linecap="round"/>
+<path d="M24.2 39Q21 46 14 47M26.4 39.5Q24.5 48 19.5 52M28.6 40Q27.8 49 24 54M30.8 40Q31 48 28.5 55.5M33.2 40Q33 48 35.5 55.5M35.4 40Q36.2 49 40 54M37.6 39.5Q39.5 48 44.5 52M39.8 39Q43 46 50 47" fill="none" stroke="#fbf4e4" stroke-width="2" stroke-linecap="round"/>
+</svg>
           </div>
           <h3>cuttlefish-crew</h3>
         </div>
-        <p>A fleet manager for teams of coding agents, working across many projects at once.</p>
+        <p>Run a crew of coding agents across all your projects and watch them from one dashboard.</p>
         <div class="links">
           <a href="https://github.com/leejianrong/cuttlefish-crew">GitHub ↗</a>
         </div>
       </div>
+      <div class="prod reveal">
+        <div class="ph">
+          <div class="picon tile" aria-hidden="true">
+<svg viewBox="0 0 64 64" aria-hidden="true">
+<rect width="64" height="64" rx="14" fill="#f4c13d"/>
+<circle cx="32" cy="38" r="19" fill="#ffffff"/>
+<path d="M14 31C14 14 50 14 50 31Z" fill="#2c7fb8"/>
+<rect x="12" y="28.5" width="40" height="6.5" rx="3.2" fill="#1f5f8e"/>
+<circle cx="32" cy="11.5" r="4" fill="#ffffff"/>
+<circle cx="25.5" cy="41" r="2.2" fill="#2b2f3a"/>
+<circle cx="38.5" cy="41" r="2.2" fill="#2b2f3a"/>
+<circle cx="32" cy="44" r="2" fill="#f08a2d"/>
+<path d="M26 48Q32 53.5 38 48" fill="none" stroke="#2b2f3a" stroke-width="2.2" stroke-linecap="round"/>
+<circle cx="20.5" cy="46" r="2.6" fill="#f6b6b0"/>
+<circle cx="43.5" cy="46" r="2.6" fill="#f6b6b0"/>
+</svg>
+          </div>
+          <h3>vikaki</h3>
+        </div>
+        <p>A cartoon avatar that lip-syncs speech from a mic or text, in a browser meeting or driven by an LLM.</p>
+        <div class="links">
+          <a href="https://github.com/leejianrong/vikaki">GitHub ↗</a>
+        </div>
+      </div>
+      <div class="prod reveal">
+        <div class="ph">
+          <div class="picon tile" aria-hidden="true">
+<svg viewBox="0 0 64 64" aria-hidden="true">
+<rect width="64" height="64" rx="14" fill="#5f7f25"/>
+<path d="M25 56C16 52 17 44 17 33A15 15 0 0 1 47 33A10 10 0 0 1 27 33A5 5 0 0 1 37 33" fill="none" stroke="#fbf4e4" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+<g fill="#d5ec9a">
+<path d="M0 0Q3.5 -3 7.5 0Q3.5 3 0 0Z" transform="translate(15.5 33.0) rotate(180)"/>
+<path d="M0 0Q3.5 -3 7.5 0Q3.5 3 0 0Z" transform="translate(18.5 23.5) rotate(215)"/>
+<path d="M0 0Q3.5 -3 7.5 0Q3.5 3 0 0Z" transform="translate(26.4 17.5) rotate(250)"/>
+<path d="M0 0Q3.5 -3 7.5 0Q3.5 3 0 0Z" transform="translate(36.3 17.1) rotate(285)"/>
+<path d="M0 0Q3.5 -3 7.5 0Q3.5 3 0 0Z" transform="translate(44.6 22.4) rotate(320)"/>
+<path d="M0 0Q3.5 -3 7.5 0Q3.5 3 0 0Z" transform="translate(48.2 30.1) rotate(350)"/>
+</g>
+</svg>
+          </div>
+          <h3>fraktal</h3>
+        </div>
+        <p>Procedural world generation for synthetic satellite imagery, with pixel-exact labels.</p>
+        <div class="links">
+          <a href="https://github.com/leejianrong/fraktal">GitHub ↗</a>
+        </div>
+      </div>
     </div>
 
-    <p class="brewing reveal">Also brewing: <b>an open-weights coding model</b> and <b>tooling for synthetic training data</b>. Both still early, watch this space.</p>
+    <p class="brewing reveal">Also brewing: <b>an open-weights coding model</b>. Still early, watch this space.</p>
   </div>
 </section>
 
@@ -350,8 +451,11 @@
         <a href="https://sibeiflow.abangai.dev/">sibei-flow</a>
         <a href="https://github.com/leejianrong/kopicode">kopicode</a>
         <a href="https://indah.abangai.dev/">indah</a>
-        <a href="https://github.com/leejianrong/kampong-agents">kampong-agents</a>
+        <a href="https://semula.abangai.dev/docs/">semula</a>
+        <a href="https://kampong.abangai.dev/">kampong-agents</a>
         <a href="https://github.com/leejianrong/cuttlefish-crew">cuttlefish-crew</a>
+        <a href="https://github.com/leejianrong/vikaki">vikaki</a>
+        <a href="https://github.com/leejianrong/fraktal">fraktal</a>
         <a href="https://github.com/leejianrong">GitHub ↗</a>
       </div>
     </div>

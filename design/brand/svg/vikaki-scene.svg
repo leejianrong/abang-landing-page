@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 340" role="img" aria-label="vikaki scene: the snowman mascot speaking, with a waveform in a speech bubble">
+<title>vikaki</title>
+<rect width="460" height="340" fill="#f4c13d"/>
+<circle cx="192" cy="204" r="136" fill="#f7cf62"/>
+<g transform="translate(-6 -30) scale(6.2)">
+<circle cx="32" cy="38" r="19" fill="#ffffff"/>
+<path d="M14 31C14 14 50 14 50 31Z" fill="#2c7fb8"/>
+<rect x="12" y="28.5" width="40" height="6.5" rx="3.2" fill="#1f5f8e"/>
+<circle cx="32" cy="11.5" r="4" fill="#ffffff"/>
+<circle cx="25.5" cy="41" r="2.2" fill="#2b2f3a"/>
+<circle cx="38.5" cy="41" r="2.2" fill="#2b2f3a"/>
+<circle cx="32" cy="44" r="2" fill="#f08a2d"/>
+<path d="M25 48Q32 56 39 48Z" fill="#2b2f3a"/>
+<path d="M29 51.4Q32 54 35 51.4Q32 50.4 29 51.4Z" fill="#e87a7a"/>
+<circle cx="20.5" cy="46" r="2.6" fill="#f6b6b0"/>
+<circle cx="43.5" cy="46" r="2.6" fill="#f6b6b0"/>
+</g>
+<rect x="300" y="58" width="140" height="92" rx="30" fill="#ffffff"/>
+<path d="M326 146L316 182L356 150Z" fill="#ffffff"/>
+<rect x="322" y="96" width="9" height="16" rx="4.5" fill="#2c7fb8"/>
+<rect x="337" y="86" width="9" height="36" rx="4.5" fill="#2c7fb8"/>
+<rect x="352" y="76" width="9" height="56" rx="4.5" fill="#2c7fb8"/>
+<rect x="367" y="88" width="9" height="32" rx="4.5" fill="#2c7fb8"/>
+<rect x="382" y="82" width="9" height="44" rx="4.5" fill="#2c7fb8"/>
+<rect x="397" y="94" width="9" height="20" rx="4.5" fill="#2c7fb8"/>
+<rect x="412" y="100" width="9" height="8" rx="4.5" fill="#2c7fb8"/>
+</svg>

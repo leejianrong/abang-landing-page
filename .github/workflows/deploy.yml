@@ -20,11 +20,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Assemble site (index.html + CNAME only; design/ is not published)
+      - name: Assemble site (index.html, CNAME and assets/; design/ is not published)
         run: |
           mkdir -p _site
           cp index.html _site/
           cp CNAME _site/
+          cp -r assets _site/
           touch _site/.nojekyll
       - uses: actions/upload-pages-artifact@v3
         with:

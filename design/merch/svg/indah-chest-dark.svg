@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1500" class="way-dark" role="img" aria-label="indah bloom mark">
+  <title>indah left-chest print</title>
+  <style>
+    .way-light { --a:#b5296b; --b:#2e6d62; }
+    .way-dark  { --a:#f06ca6; --b:#66b7a6; }
+  </style>
+  <g transform="translate(750 750) scale(42) translate(-16 -16)">
+    <path d="M16 16C11.7 12.4 11.7 6 16 3.6C20.3 6 20.3 12.4 16 16Z" fill="var(--a)"/>
+    <path d="M16 16C20.3 19.6 20.3 26 16 28.4C11.7 26 11.7 19.6 16 16Z" fill="var(--a)"/>
+    <path d="M16 16C12.4 20.3 6 20.3 3.6 16C6 11.7 12.4 11.7 16 16Z" fill="var(--b)"/>
+    <path d="M16 16C19.6 20.3 26 20.3 28.4 16C26 11.7 19.6 11.7 16 16Z" fill="var(--b)"/>
+  </g>
+</svg>

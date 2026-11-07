@@ -1,10 +1,10 @@
 <!--
 title: "Using an AI subscription as a mock LLM for tests"
-description: semula lets a coding agent answer an app's OpenAI-compatible calls, then records those answers for repeatable offline tests. This post explains how recording, matching and streaming work, and where the mock stops being useful.
+description: semula lets a coding agent answer an app's OpenAI-compatible calls, then records those answers for repeatable offline tests. This post explains how recording, matching and streaming work.
 slug: semula-subscription-as-mock-llm
 author: Jian
 date: 2026-11-07
-status: Draft
+status: Published
 tags: [engineering, semula]
 product: semula
 sources:
@@ -133,14 +133,6 @@ That strict word threshold costs some hit rate, but it avoids a plausible answer
 Many clients request `stream: true`, while an agent usually writes a complete answer. semula stores the assembled assistant message, finish reason and usage. If an answer arrived as a stream, it also keeps its chunk boundaries. A later streamed call replays those chunks; if the entry has only a complete message, semula splits it into chunks (24 characters by default). The stream finishes with `data: [DONE]`, as an OpenAI-style stream does.
 
 The reverse works too: a non-stream request can use an entry captured from a stream. Since `stream` is ignored by the default fingerprint, one recorded answer can serve both forms. That is convenient for tests that exercise the same app flow through different clients, but it is not a model of real token timing. Re-chunked boundaries differ from a provider's, and replay is immediate by default. An app that depends on the exact timing or boundaries of live generation needs a real-provider test as well.
-
-## Know what the recording proves
-
-A semula hit shows that the app can handle the stored answer for a matched request. It does not show that a real model would choose those words today, obey a new prompt, or make the same tool call. I would use recordings for application logic, parsing and repeatability, then keep a smaller set of calls against the real model for behaviour that depends on the model itself.
-
-The current release is `0.6.1`, and semula is still in the `0.x` series, where a minor release may change behaviour. Its OpenAI-compatible surface covers Chat Completions, including tool calls and streams; clients using the Responses API or Anthropic Messages cannot point at that endpoint yet. Replay mode fails with HTTP `424` and `semula_no_match` on an unknown request. That failure is useful in CI because it identifies a missing fixture instead of asking an agent to improvise during a test.
-
-There is also an operational distinction between an agent that answers pending calls over MCP or the CLI and the optional answerer hook that launches a command per call. The hook is off by default. ADR-0002 says automated headless use of a subscription has not been checked against provider terms; I would check the terms that apply to my own setup before using that path. The ordinary agent-driven queue remains the basic record workflow.
 
 ## Try one recording, then switch to replay
 

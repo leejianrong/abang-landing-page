@@ -31,8 +31,8 @@ light and dark theme).
   designs with Python" under it. Labelled interface elements ring it (chart, graph, heatmap, chat), and
   bars and a table sit in a bottom row. The table's left edge lines up with the middle of the mark.
 - semula's back: a two-bubble chat ("Still paying for LLM credits?" / "Try semula"), the loop mark centred,
-  the wordmark, "Let Claude answer your LLM API calls", and the Claude Code mascot on a rotary phone, off
-  centre to the right (path from `src/icons/claude-code.svg`). The critter's orange (`--cl`) is the only colour outside semula's palette.
+  the wordmark, "Let Claude answer your LLM API calls", and a critter on a rotary phone, off
+  centre to the right. The critter's orange (`--cl`) is the only colour outside semula's palette.
 - `src/`: one SVG per design with CSS variables and a `way-light` class.
 - `build_merch.py`: stamps `svg/<name>-light.svg` and `svg/<name>-dark.svg` from `src/`.
 - `png/`: the print files, rendered from `svg/` in Chromium with fonts loaded, transparent background,
@@ -44,3 +44,15 @@ python3 build_merch.py
 
 The SVGs reference web fonts, so open them in a browser with network access, or outline the text in
 Inkscape or Figma before sending them to anyone who has not got the fonts.
+
+## Placeholder critter and the private build
+
+semula's back is meant to carry the Claude Code mascot, which is Anthropic's trademarked artwork, so the
+committed files use a generic placeholder critter instead. The real one lives in `private/`, which is
+gitignored:
+
+- `private/critter.svgfrag`: the mascot group that replaces the placeholder.
+- `python3 build_merch.py --private` writes the real-critter SVGs to `private/svg/`.
+- Export PNGs from `private/svg/` into `private/png/` the same way as for `svg/` and `png/`.
+
+Order the shirt from `private/png/`. Do not commit anything under `private/`.

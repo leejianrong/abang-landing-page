@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1400" class="way-light" role="img" aria-label="semula: a chat asking Still paying for LLM credits and answering Try semula, above the semula loop mark and wordmark, the line Let Claude answer your LLM API calls, and a small Claude critter on an old rotary telephone">
+  <title>semula back print</title>
+  <style>
+    .way-light { --ink:#14201B; --red:#C8271F; --paper:#F6F0E4; --cl:#D97757; }
+    .way-dark  { --ink:#DDE8E2; --red:#FF7767; --paper:#14201B; --cl:#E58A6B; }
+    .wm  { font-family:'Hanken Grotesk',sans-serif; font-weight:800; letter-spacing:-0.035em; fill:var(--ink); }
+    .sub { font-family:'IBM Plex Mono',monospace; font-weight:500; letter-spacing:0.02em; fill:var(--ink); }
+    .msg { font-family:'IBM Plex Mono',monospace; font-weight:500; font-size:38px; }
+  </style>
+
+  <!-- the chat -->
+  <g transform="translate(0 -18)">
+  <path d="M160 50H840A30 30 0 0 1 870 80V120A30 30 0 0 1 840 150H236L188 190V150H160A30 30 0 0 1 130 120V80A30 30 0 0 1 160 50Z" fill="none" stroke="var(--ink)" stroke-width="10" stroke-linejoin="round"/>
+  <text class="msg" x="500" y="113" text-anchor="middle" fill="var(--ink)">Still paying for LLM credits?</text>
+  <path d="M560 215H840A30 30 0 0 1 870 245V285A30 30 0 0 1 840 315H826L850 357L790 315H560A30 30 0 0 1 530 285V245A30 30 0 0 1 560 215Z" fill="var(--red)"/>
+  <text class="msg" x="700" y="278" text-anchor="middle" fill="var(--paper)">Try semula</text>
+  </g>
+
+  <!-- the semula mark, same as the chest print, centred on the print -->
+  <g transform="translate(500 600) scale(8) translate(-32 -32)">
+    <path d="M32 11A21 21 0 1 1 11 32" fill="none" stroke="var(--ink)" stroke-width="6.5" stroke-linecap="round"/>
+    <path d="M11 22L4 33H18z" fill="var(--ink)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+    <circle cx="32" cy="11" r="8.5" fill="var(--red)"/>
+  </g>
+
+  <text class="wm" x="500" y="905" font-size="125" text-anchor="middle">semula</text>
+  <text class="sub" x="500" y="958" font-size="30" text-anchor="middle">Let Claude answer your LLM API calls</text>
+
+  <!-- the Claude Code mascot (path from src/icons/claude-code.svg) holding a rotary phone's handset to its head, off centre to the right -->
+  <g transform="translate(525 1097) scale(1.3)">
+    <!-- telephone base, after the reference: horns, dial with eight holes -->
+    <g transform="translate(0 26) scale(0.135) translate(-143 -270)">
+      <path d="M342 305Q345 280 372 280Q395 282 402 305L424 360Q432 380 458 380H652Q678 380 686 360L708 305Q716 280 740 280Q766 282 770 305L818 635Q822 655 835 668L935 783Q967 820 967 865V925Q967 965 927 965H183Q143 965 143 925V865Q143 820 175 783L270 672Q290 655 293 635Z" fill="var(--red)"/>
+      <circle cx="555" cy="646" r="158" fill="var(--paper)" stroke="var(--ink)" stroke-width="14"/>
+      <g fill="var(--ink)"><circle cx="555.0" cy="542.0" r="25"/><circle cx="628.5" cy="572.5" r="25"/><circle cx="659.0" cy="646.0" r="25"/><circle cx="628.5" cy="719.5" r="25"/><circle cx="555.0" cy="750.0" r="25"/><circle cx="481.5" cy="719.5" r="25"/><circle cx="451.0" cy="646.0" r="25"/><circle cx="481.5" cy="572.5" r="25"/><circle cx="555" cy="646" r="50"/></g>
+    </g>
+    <!-- coiled cord -->
+    <path d="M152 114q-4 10 -10 4q-6 -8 -12 0q-6 8 -12 0q-6 -8 -10 0q-4 6 -9 0" fill="none" stroke="var(--ink)" stroke-width="3" stroke-linecap="round"/>
+    <!-- handset, arched, held at the ear -->
+    <g transform="translate(160 62) rotate(-90) scale(0.1) translate(-555 -440)">
+      <path d="M62 545C55 430 75 365 118 335C300 245 450 235 555 235C660 235 810 245 992 335C1035 365 1052 430 1046 545C940 440 760 358 555 358C350 358 170 440 62 545Z" fill="var(--ink)"/>
+      <rect x="50" y="470" width="310" height="120" rx="32" transform="rotate(-30 205 530)" fill="var(--paper)" stroke="var(--ink)" stroke-width="14"/>
+      <rect x="750" y="470" width="310" height="120" rx="32" transform="rotate(30 905 530)" fill="var(--paper)" stroke="var(--ink)" stroke-width="14"/>
+    </g>
+    <!-- mascot; its near arm holds the handset -->
+    <g transform="translate(160 30) scale(6) translate(0 -5)">
+      <path clip-rule="evenodd" fill-rule="evenodd" fill="var(--cl)" d="M20.998 10.949H24v3.102h-3v3.028h-1.487V20H18v-2.921h-1.487V20H15v-2.921H9V20H7.488v-2.921H6V20H4.487v-2.921H3V14.05H0V10.95h3V5h17.998v5.949zM6 10.949h1.488V8.102H6v2.847zm10.51 0H18V8.102h-1.49v2.847z"/>
+    </g>
+  </g>
+</svg>

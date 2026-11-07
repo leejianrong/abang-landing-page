@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1500" class="way-dark" role="img" aria-label="semula loop mark">
+  <title>semula left-chest print</title>
+  <style>
+    .way-light { --ink:#14201B; --red:#C8271F; }
+    .way-dark  { --ink:#DDE8E2; --red:#FF7767; }
+  </style>
+  <g transform="translate(750 750) scale(19) translate(-32 -32)">
+    <path d="M32 11A21 21 0 1 1 11 32" fill="none" stroke="var(--ink)" stroke-width="6.5" stroke-linecap="round"/>
+    <path d="M11 22L4 33H18z" fill="var(--ink)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+    <circle cx="32" cy="11" r="8.5" fill="var(--red)"/>
+  </g>
+</svg>

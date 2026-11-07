@@ -56,6 +56,9 @@ assets/                        published with the site: favicon.svg, favicon-32.
 .github/workflows/deploy.yml   builds and deploys to GitHub Pages on push to main
 design/                        design explorations and logo options, never deployed
 design/brand/                  master logo SVGs and their generators (see its README)
+blog/                          blog posts (posts/), Codex briefs (briefs/), AGENTS.md for the
+                               writing agent, PLAN.md, run-codex.sh
+scripts/build_blog.py          builds the blog from Markdown; CI runs it into _site
 deploy/cloudflare/             Cloudflare Worker sources (fraktal.abangai.dev placeholder)
 ```
 
@@ -63,6 +66,16 @@ deploy/cloudflare/             Cloudflare Worker sources (fraktal.abangai.dev pl
 
 Push to `main` → GitHub Actions publishes `index.html`, `CNAME` and `assets/` to GitHub Pages.
 First-time repo setup: Settings → Pages → source = GitHub Actions.
+
+## Blog
+
+Posts are Markdown in `blog/posts/<slug>.md` with the metadata comment described in
+`scripts/build_blog.py`. CI builds every `status: Published` post into `/blog/`, plus a feed,
+`sitemap.xml` and `robots.txt`. The page chrome (styles, nav, footer) is lifted from `index.html`
+at build time, so edit it there, never in the script. Prose is written by a Codex agent from a brief
+(`blog/PLAN.md`, `blog/run-codex.sh`) and reviewed by Jian; agents working on this repo should not
+write post prose themselves. Preview drafts with
+`uv run scripts/build_blog.py --drafts --out /tmp/blog-preview`.
 
 ## Logos and backgrounds
 

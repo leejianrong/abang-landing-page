@@ -10,3 +10,6 @@ _site/
 
 .env.cloudflare
 .env
+
+# local Codex run reports
+blog/.runs/

@@ -72,10 +72,15 @@ First-time repo setup: Settings → Pages → source = GitHub Actions.
 Posts are Markdown in `blog/posts/<slug>.md` with the metadata comment described in
 `scripts/build_blog.py`. CI builds every `status: Published` post into `/blog/`, plus a feed,
 `sitemap.xml` and `robots.txt`. The page chrome (styles, nav, footer) is lifted from `index.html`
-at build time, so edit it there, never in the script. Prose is written by a Codex agent from a brief
-(`blog/PLAN.md`, `blog/run-codex.sh`) and reviewed by Jian; agents working on this repo should not
-write post prose themselves. Preview drafts with
+at build time, so edit it there, never in the script. Prose is written from a brief
+(`blog/PLAN.md`) following `blog/AGENTS.md`, either by Codex (`blog/run-codex.sh`) or by Claude
+when Jian asks (2026-11-19: he asked Claude to draft posts 02, 04, 05, 06, 07), and always
+reviewed by Jian before `status: Published`. Preview drafts with
 `uv run scripts/build_blog.py --drafts --out /tmp/blog-preview`.
+
+**Scheduling:** a `status: Published` post dated in the future is hidden until that date. The
+deploy workflow also runs daily (06:15 UTC cron), so it goes live that day without a push.
+To schedule: review the draft, set `status: Published` and the go-live `date`, merge to `main`.
 
 ## Logos and backgrounds
 

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="satay" style="color:#3a3036">
+<title>satay</title>
+<mask id="m-satay" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64">
+<rect width="64" height="64" fill="#000"/>
+<g transform="rotate(-45 32 32)">
+<line x1="6" y1="32" x2="58" y2="32" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
+<rect x="12.5" y="22.5" width="12" height="19" rx="5" fill="#fff"/>
+<rect x="26" y="22.5" width="12" height="19" rx="5" fill="#fff"/>
+<rect x="39.5" y="22.5" width="12" height="19" rx="5" fill="#fff"/>
+</g>
+</mask>
+<rect width="64" height="64" fill="currentColor" mask="url(#m-satay)"/>
+</svg>

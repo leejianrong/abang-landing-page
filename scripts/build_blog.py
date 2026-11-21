@@ -18,6 +18,7 @@ write-tech-blog-post skill:
     author: Jian
     date: 2026-11-07
     status: Draft            # Draft | Published (only Published is built unless --drafts)
+                             # A Published post with a future date is hidden until that date.
     tags: [engineering, semula]
     product: semula          # optional
     sources: [...]           # optional, for reviewers; never rendered
@@ -199,8 +200,13 @@ def build(out, drafts):
     posts = []
     for f in sorted((ROOT / "blog" / "posts").glob("*.md")):
         meta = parse(f)
-        if str(meta["status"]).lower() == "published" or drafts:
-            meta["draft"] = str(meta["status"]).lower() != "published"
+        is_published = str(meta["status"]).lower() == "published"
+        # A Published post dated in the future stays hidden until its date (scheduling).
+        # The daily cron in deploy.yml rebuilds the site so it appears on that day.
+        if is_published and meta["date"] > dt.datetime.now(dt.timezone.utc).date() and not drafts:
+            continue
+        if is_published or drafts:
+            meta["draft"] = not is_published
             posts.append(meta)
     posts.sort(key=lambda p: p["date"], reverse=True)
 

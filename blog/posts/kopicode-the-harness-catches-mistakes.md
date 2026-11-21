@@ -3,8 +3,8 @@ title: "Cheap models can code if the harness catches their mistakes"
 description: How kopicode catches the mistakes cheap coding models make, what each check does, and how much of the idea we have measured so far (not much, and we say how much).
 slug: kopicode-the-harness-catches-mistakes
 author: Jian
-date: 2026-11-26
-status: Draft
+date: 2026-11-21
+status: Published
 tags: [engineering, kopicode]
 product: kopicode
 sources:

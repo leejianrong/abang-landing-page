@@ -3,8 +3,8 @@ title: "Designing a logo system with a coding agent"
 description: How we drew one set of logos for the Abang products by having a coding agent write SVG, render it, look at it and fix it, and where we would not trust the agent.
 slug: logo-system-with-a-coding-agent
 author: Jian
-date: 2026-12-03
-status: Draft
+date: 2026-11-24
+status: Published
 tags: [behind-the-build, abang-ai]
 product: abang-ai
 sources:

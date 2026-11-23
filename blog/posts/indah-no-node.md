@@ -3,8 +3,8 @@ title: "A Python UI framework with no Node: shipping a prebuilt frontend"
 description: How indah serves a full web UI from one Python package, with one port, no WebSockets and no Node at install or runtime, and what each choice costs.
 slug: indah-no-node
 author: Jian
-date: 2026-12-10
-status: Draft
+date: 2026-11-26
+status: Published
 tags: [engineering, indah]
 product: indah
 sources:

@@ -79,7 +79,7 @@ reviewed by Jian before `status: Published`. Preview drafts with
 `uv run scripts/build_blog.py --drafts --out /tmp/blog-preview`.
 
 **Scheduling:** a `status: Published` post dated in the future is hidden until that date. The
-deploy workflow also runs daily (06:15 UTC cron), so it goes live that day without a push.
+deploy workflow also runs daily (00:05 UTC+8 cron, 16:05 UTC); post dates are UTC+8 dates, so it goes live that day without a push.
 To schedule: review the draft, set `status: Published` and the go-live `date`, merge to `main`.
 
 ## Logos and backgrounds

@@ -3,8 +3,8 @@ title: "One YAML file you can commit, diff and eject"
 description: How kampong-agents keeps an agent workflow in one plain YAML file, lets the canvas and your editor share it, and ejects to a standalone TypeScript project when you want to leave.
 slug: kampong-one-yaml-file
 author: Jian
-date: 2026-12-17
-status: Draft
+date: 2026-11-28
+status: Published
 tags: [engineering, kampong-agents]
 product: kampong-agents
 sources:

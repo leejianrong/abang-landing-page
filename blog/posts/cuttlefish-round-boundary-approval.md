@@ -3,8 +3,8 @@ title: "Approval at the round boundary: running a crew of coding agents"
 description: How cuttlefish-crew runs coding agents across several repos, why it asks for your approval between rounds of work instead of cutting in mid-task, and where the three supported agents differ.
 slug: cuttlefish-round-boundary-approval
 author: Jian
-date: 2026-12-24
-status: Draft
+date: 2026-11-30
+status: Published
 tags: [engineering, cuttlefish-crew]
 product: cuttlefish-crew
 sources:

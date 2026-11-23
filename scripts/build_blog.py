@@ -48,6 +48,8 @@ import yaml
 ROOT = Path(__file__).resolve().parent.parent
 SITE = "https://abangai.dev"
 WPM = 220
+# Post dates are the author's local dates (UTC+8), so a post goes live at 00:00 there.
+AUTHOR_TZ = dt.timezone(dt.timedelta(hours=8))
 
 BLOG_CSS = """
   /* ---------- blog ---------- */
@@ -203,7 +205,7 @@ def build(out, drafts):
         is_published = str(meta["status"]).lower() == "published"
         # A Published post dated in the future stays hidden until its date (scheduling).
         # The daily cron in deploy.yml rebuilds the site so it appears on that day.
-        if is_published and meta["date"] > dt.datetime.now(dt.timezone.utc).date() and not drafts:
+        if is_published and meta["date"] > dt.datetime.now(AUTHOR_TZ).date() and not drafts:
             continue
         if is_published or drafts:
             meta["draft"] = not is_published

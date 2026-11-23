@@ -23,7 +23,7 @@ Four kinds of post, used as tags:
 - `release`: short, factual, from the changelog.
 - `behind-the-build`: how we work.
 
-Cadence: one post a week at most. Lead with posts that have a concrete pain and an immediate payoff
+Cadence: one post every 1 or 2 days while the backlog of drafts lasts (changed 2026-11-24 from one a week). Lead with posts that have a concrete pain and an immediate payoff
 (semula, then kopicode's thesis and satay's replay debugger), not the most technically
 interesting one.
 

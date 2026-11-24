@@ -28,7 +28,7 @@ sources:
 
 indah is a Python library for building small web UIs, and it is made for cloud notebooks such as Colab and Runpod. You install it with `pip`, write a Python file, and get a page in the browser, with no Node, npm or bun anywhere. This post explains the four design choices that make that work, and for each one, the problem that forced it. It also lists what we gave up.
 
-The version we describe is 0.13.0 (the latest git tag when we wrote this).
+The measurements below come from the architecture notes in the repository (ADR-0042) and were taken at the dates they give. The size limits are the current ones from `docs/size-budget.json`.
 
 ## The notebook constraint
 
@@ -102,7 +102,7 @@ Three tools came out of that ADR:
 
 Moving the map out of the shell is the clearest case, and it was measured. The shell went from 581,046 to 428,605 bytes raw, and from 243,354 to 199,839 gzipped. The ADR also measured the cost on a slow 4G profile (median of five runs). A page without a map loaded 0.94 seconds faster, and a page with a map took 0.23 seconds longer. We left the chart library (uPlot) in the shell because it is small, 23.8 KB gzipped, and charts are common.
 
-At the 0.13.0 tag the budget allows 231,000 bytes of gzipped shell and 630,000 bytes of wheel.
+Today the budget allows 231,000 bytes of gzipped shell and 645,000 bytes of wheel.
 
 ## What you give up
 
